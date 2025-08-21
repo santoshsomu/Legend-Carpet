@@ -1,0 +1,82 @@
+/* ...existing code... */
+.service-button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.service-button:hover {
+    transform: translateY(-5px);
+}
+
+.google-reviews-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.google-reviews-btn i {
+    font-size: 1.2em;
+}
+
+/* Portfolio Styles */
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.before-after-pair {
+    margin-bottom: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-comparison-slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.comparison-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: #fff;
+    cursor: ew-resize;
+}
+
+.image-slider::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .image-comparison-slider {
+        height: 300px;
+    }
+}
+/* ...existing code... */

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; frame-src https://www.google.com; connect-src 'self';">
+    <title>Legend Carpet Cleaning | Melbourne's Premier Carpet & Repair Experts</title>
+    <meta name="description" content="Legend Carpet provides expert carpet cleaning, repair, stain removal, and upholstery cleaning services across Melbourne. Get a free quote today!">
+    <meta name="keywords" content="carpet cleaning Melbourne, carpet repair, carpet stretching, water damage restoration, upholstery cleaning, carpet installation">
+    <meta name="author" content="Legend Carpet Services">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Legend Carpet Cleaning | Melbourne's Premier Carpet & Repair Experts">
+    <meta property="og:description" content="Professional carpet cleaning, repair, and restoration services across Melbourne. Free quotes available.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://legendcarpet.com.au">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/service.css') }}">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="{{ url_for('static', filename='images/legend.png') }}" alt="Legend Carpet Services Logo" style="height: 80px;" loading="lazy">
+                </a>
+
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/#why-us">Why Us</a></li>
+                        <li><a href="/#service-areas">Areas</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li><a href="/#contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-contact">
+                    <a href="tel:0416388777" class="phone-link">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <span>0416 388 777</span>
+                    </a>
+                    <a href="#contact" class="cta-button header-cta">Get Quote</a>
+                </div>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="{{ url_for('static', filename='images/legend.png') }}" alt="Legend Carpet Services Logo - Melbourne's Premier Carpet Experts" style="height: 110px;" loading="lazy">
+                    </div>
+                    <p>Your trusted partner for professional carpet cleaning and repairs in Melbourne. We are committed to quality and customer satisfaction.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/#why-us">Why Us</a></li>
+                        <li><a href="/#service-areas">Service Areas</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li><a href="/#contact">Contact</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="/#services">Carpet Repair</a></li>
+                        <li><a href="/#services">Carpet Cleaning</a></li>
+                        <li><a href="/#services">Carpet Stretching</a></li>
+                        <li><a href="/#services">Water Damage</a></li>
+                        <li><a href="/#services">Carpet Installation</a></li>
+                        <li><a href="/#services">Upholstery Cleaning</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info-footer">
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:0416388777">0416 388 777</a></p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:info@legendcarpet.com.au">info@legendcarpet.com.au</a></p>
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Melbourne & Surrounding Suburbs</p>
+                        <p><i class="fas fa-clock" aria-hidden="true"></i> Mon-Sat: 7AM-7PM</p>
+                    </div>
+                </div>
+            </div>
+
+                        <div class="footer-bottom">
+                <p>Copyright 2024-25, All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="tel:0416388777" class="floating-call-btn" aria-label="Call Now">
+        <i class="fas fa-phone" aria-hidden="true"></i>
+    </a>
+
+    <button class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<div class="services-grid">
+    {% for service in services %}
+    <div class="service-card scale-in">
+        <a href="{{ url_for('service', service_name=service.url_name) }}" class="service-card-link">
+            <div class="service-icon">
+                <i class="{{ service.icon }}"></i>
+            </div>
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.description }}</p>
+            <span class="service-cta">Learn More <i class="fas fa-arrow-right"></i></span>
+        </a>
+    </div>
+    {% endfor %}
+</div>

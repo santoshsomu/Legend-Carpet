@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main-content">
+    <!-- Portfolio Hero Section -->
+    <section id="portfolio-hero" class="portfolio-hero">
+        <div class="container">
+            <div class="portfolio-hero-content fade-in">
+                <h1>Our Transformations</h1>
+                <p class="hero-subtitle">Witness the remarkable difference our expert carpet cleaning and restoration services make. Drag the slider to reveal stunning before and after results.</p>
+                <div class="portfolio-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Carpets Restored</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Customer Satisfaction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery Section -->
+    <section id="portfolio-gallery" class="section-padding">
+        <div class="container">
+            <!-- Filter Tabs -->
+            <div class="portfolio-filters fade-in">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="cleaning">Deep Cleaning</button>
+                <button class="filter-btn" data-filter="repair">Carpet Repair</button>
+                <button class="filter-btn" data-filter="restoration">Water Damage</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                {% if portfolio_images and portfolio_images|length > 0 %}
+                    {% for image_pair in portfolio_images %}
+                    <div class="portfolio-item scale-in" data-category="{{ image_pair.category }}" data-id="{{ image_pair.id }}">
+                        <div class="portfolio-card">
+                            <div class="image-comparison-slider" data-slider-id="{{ image_pair.id }}">
+                                <img class="comparison-image image-before" 
+                                     src="{{ url_for('static', filename=image_pair.before) }}" 
+                                     alt="Carpet before {{ image_pair.category }}" 
+                                     loading="lazy">
+                                <img class="comparison-image image-after" 
+                                     src="{{ url_for('static', filename=image_pair.after) }}" 
+                                     alt="Carpet after {{ image_pair.category }}" 
+                                     loading="lazy">
+                                <div class="comparison-slider">
+                                    <div class="comparison-slider-handle">
+                                        <i class="fas fa-arrows-alt-h" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="comparison-labels">
+                                    <span class="label-before">Before</span>
+                                    <span class="label-after">After</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>{{ image_pair.title }}</h3>
+                                <p>{{ image_pair.description }}</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">{{ image_pair.category|title }}</span>
+                                    <span class="tag">Transformation {{ image_pair.id }}</span>
+                                    {% if image_pair.using_fallback %}
+                                    <span class="tag" style="background-color: #f59e0b; color: white;">Using Demo Images</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-images-message">
+                        <h3>Portfolio Images Not Found</h3>
+                        <p>We're having trouble loading the portfolio images. Please check back later or contact us for more information.</p>
+                        <p><small>Debug: {{ portfolio_images|length if portfolio_images else 'No portfolio_images variable' }} images found</small></p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Load More Button -->
+            <div class="portfolio-actions text-center">
+                <button class="cta-button load-more-btn">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="portfolio-cta" class="portfolio-cta-section">
+        <div class="container">
+            <div class="cta-content text-center fade-in">
+                <h2>Ready for Your Own Transformation?</h2>
+                <p>Join hundreds of satisfied customers who've experienced the Legend Carpet difference. Get your free quote today and see what we can do for your carpets.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="cta-button">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        Get Free Quote
+                    </a>
+                    <a href="tel:0416388777" class="cta-button cta-secondary">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                        Call Now: 0416 388 777
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
+{% endblock %}

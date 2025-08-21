@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main-content">
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="service-hero-content">
+                <h1 class="fade-in">{{ service.name }}</h1>
+                <p class="hero-subtitle fade-in">{{ service.long_description }}</p>
+                <div class="hero-cta fade-in">
+                    <a href="#contact" class="cta-button">Get Free Quote</a>
+                    <a href="tel:0416388777" class="cta-button cta-secondary">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section id="trust-badges">
+        <div class="container">
+            <div class="badges-grid">
+                <div class="badge fade-in">
+                    <i class="fas fa-award" aria-hidden="true"></i>
+                    <span>15+ Years Experience</span>
+                </div>
+                <div class="badge fade-in">
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                    <span>Fully Insured</span>
+                </div>
+                <div class="badge fade-in">
+                    <i class="fas fa-clock" aria-hidden="true"></i>
+                    <span>Same-Day Service</span>
+                </div>
+                <div class="badge fade-in">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <span>Satisfaction Guarantee</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Features Section -->
+    <section id="service-features" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center fade-in">
+                <h2>Why Choose Us for {{ service.name }}</h2>
+                <p class="section-subtitle">Our expert team delivers exceptional results with guaranteed satisfaction</p>
+            </div>
+
+            {% if service.features %}
+            <div class="benefits-grid">
+                {% for feature in service.features %}
+                <div class="benefit scale-in">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <div>
+                        <h4>{{ feature.title }}</h4>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Before/After Section -->
+    <section id="before-after" class="section-padding" style="background-color: var(--surface);">
+        <div class="container">
+            <div class="section-header text-center fade-in">
+                <h2>See the Difference</h2>
+                <p class="section-subtitle">Real results from our {{ service.name.lower() }} services</p>
+            </div>
+            
+            <div class="before-after-showcase scale-in">
+                <div class="image-comparison-slider">
+                    <img class="comparison-image image-before" src="{{ url_for('static', filename='images/before.jpeg') }}" alt="Before {{ service.name.lower() }}" loading="lazy">
+                    <img class="comparison-image image-after" src="{{ url_for('static', filename='images/after.jpeg') }}" alt="After {{ service.name.lower() }}" loading="lazy">
+                    <div class="comparison-slider">
+                        <div class="comparison-slider-handle">
+                            <i class="fas fa-arrows-alt-h" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="comparison-labels">
+                        <span class="label-before">Before</span>
+                        <span class="label-after">After</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    {% if service.process_steps %}
+    <section id="process" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center fade-in">
+                <h2>Our {{ service.name }} Process</h2>
+                <p class="section-subtitle">Professional, systematic approach for guaranteed results</p>
+            </div>
+            <div class="process-steps">
+                {% for step in service.process_steps %}
+                <div class="step fade-in">
+                    <div class="step-number">{{ loop.index }}</div>
+                    <div class="step-content">
+                        <h3>{{ step.title }}</h3>
+                        <p>{{ step.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding" style="background-color: var(--surface);">
+        <div class="container">
+            <div class="section-header text-center fade-in">
+                <h2>What Our Customers Say</h2>
+                <p class="section-subtitle">Real feedback from satisfied customers</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <p>"Absolutely phenomenal {{ service.name.lower() }}! The results exceeded my expectations. Professional, punctual, and reasonably priced."</p>
+                    <div class="testimonial-author">
+                        <strong>Sarah M.</strong>
+                        <span>Werribee</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <p>"Legend Carpet transformed my carpets completely. The {{ service.name.lower() }} service was exactly what I needed. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <strong>Michael B.</strong>
+                        <span>Point Cook</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                    </div>
+                    <p>"Outstanding service and results. The team was professional and the {{ service.name.lower() }} work was flawless. Will definitely use again."</p>
+                    <div class="testimonial-author">
+                        <strong>Emma R.</strong>
+                        <span>Southbank</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="service-cta" class="section-padding">
+        <div class="container">
+            <div class="cta-content text-center fade-in">
+                <h2>Ready for Professional {{ service.name }}?</h2>
+                <p>Get your free quote today and experience the Legend Carpet difference. Same-day service available.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="cta-button">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        Book Free Quote
+                    </a>
+                    <a href="tel:0416388777" class="cta-button cta-secondary">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        Call: 0416 388 777
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

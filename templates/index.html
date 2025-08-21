@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; frame-src https://www.google.com; connect-src 'self';">
+    <title>Legend Carpet Cleaning | Melbourne's Premier Carpet & Repair Experts</title>
+    <meta name="description" content="Legend Carpet provides expert carpet cleaning, repair, stain removal, and upholstery cleaning services across Melbourne. Get a free quote today!">
+    <meta name="keywords" content="carpet cleaning Melbourne, carpet repair, carpet stretching, water damage restoration, upholstery cleaning, carpet installation">
+    <meta name="author" content="Legend Carpet Services">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Legend Carpet Cleaning | Melbourne's Premier Carpet & Repair Experts">
+    <meta property="og:description" content="Professional carpet cleaning, repair, and restoration services across Melbourne. Free quotes available.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://legendcarpet.com.au">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='images/legend.png') }}" alt="Legend Carpet Services Logo" style="height: 80px;" loading="lazy">
+                </a>
+
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#why-us">Why Us</a></li>
+                        <li><a href="#service-areas">Areas</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-contact">
+                    <a href="tel:0416388777" class="phone-link">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <span>0416 388 777</span>
+                    </a>
+                    <a href="#contact" class="cta-button header-cta">Get Quote</a>
+                </div>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-video-container">
+                <video class="hero-video" autoplay loop muted playsinline preload="auto">
+    <source src="{{ url_for('static', filename='videos/hero-background.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Revive Your Carpets in Just One Visit</h1>
+                        <p class="hero-subtitle">From stubborn stains to everyday wear, we bring your carpets back to life. Experience a cleaner, healthier home with Melbourne's trusted carpet care specialists.</p>
+
+                        <div class="hero-features">
+                            <div class="feature">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span>15+ Years Experience</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                                <span>Fully Insured & Certified</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <span>Same-Day Service Available</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-leaf" aria-hidden="true"></i>
+                                <span>Eco-Friendly & Pet Safe</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-cta">
+                            <a href="#contact" class="cta-button cta-primary">Get My Free Quote</a>
+                            <a href="tel:0416388777" class="cta-button cta-secondary">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                Call Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-form-container">
+                        <div class="quote-form">
+                            <h3>Get Your Free Quote</h3>
+                            <form id="hero-form" action="your-form-handler-url" method="POST">
+                                <p class="honeypot">
+                                    <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+                                </p>
+                                <div class="form-row">
+                                    <input type="text" name="name" placeholder="Your Name" required>
+                                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                                </div>
+                                <div class="form-row">
+                                    <input type="text" name="suburb" placeholder="Suburb/Postcode" required>
+                                    <input type="email" name="email" placeholder="Email Address" required>
+                                </div>
+                                <select name="service" required>
+                                    <option value="" disabled selected>Select Service</option>
+                                    <option value="carpet-repair">Carpet Repair</option>
+                                    <option value="carpet-cleaning">Carpet Cleaning</option>
+                                    <option value="carpet-stretching">Carpet Stretching</option>
+                                    <option value="water-damage">Water Damage Restoration</option>
+                                    <option value="carpet-installation">Carpet Installation</option>
+                                </select>
+                                <textarea name="description" placeholder="Describe your issue (optional)" rows="3"></textarea>
+                                <button type="submit" class="cta-button">Get Free Quote</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges -->
+        <section id="trust-badges">
+            <div class="container">
+                <div class="badges-grid">
+                    <div class="badge fade-in">
+                        <i class="fas fa-award" aria-hidden="true"></i>
+                        <span>15+ Years Experience</span>
+                    </div>
+                    <div class="badge fade-in">
+                        <i class="fas fa-leaf" aria-hidden="true"></i>
+                        <span>Eco-Friendly Solutions</span>
+                    </div>
+                    <div class="badge fade-in">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Satisfaction Guarantee</span>
+                    </div>
+                    <div class="badge fade-in">
+                        <i class="fas fa-home" aria-hidden="true"></i>
+                        <span>Family Owned & Operated</span>
+                    </div>
+                    <div class="badge fade-in">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        <span>Fully Insured</span>
+                    </div>
+                    <div class="badge fade-in">
+                        <a href="https://www.google.com/search?q=legend+carpet+cleaning+reviews" target="_blank" rel="noopener noreferrer" class="google-review-badge">
+                            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" alt="Google" style="height: 20px; margin-right: 8px;" loading="lazy">
+                            <div>
+                                <strong>Google</strong> Reviews
+                                <div class="stars">
+                                    <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                                    <span>4.9 (250+ Reviews)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-padding">
+            <div class="container">
+                <div class="section-header text-center fade-in">
+                    <h2>From Stains to Stretching, We Do It All</h2>
+                    <p class="section-subtitle">Our expert team handles every carpet challenge, ensuring your floors are spotless, safe, and beautifully maintained.</p>
+                </div>
+
+                <div class="services-grid">
+                    <a href="/carpet-repair" class="service-card service--repair">
+                        <div class="service-icon">
+                            <i class="fas fa-cut" aria-hidden="true"></i>
+                        </div>
+                        <h3>Carpet Repair & Patching</h3>
+                        <p>Don't replace, repair! We fix burns, tears, and pet damage, seamlessly restoring your carpet's original look.</p>
+                        <ul class="service-features">
+                            <li>Burn mark repair</li>
+                            <li>Tear and hole patching</li>
+                            <li>Stain removal</li>
+                            <li>Seam repair</li>
+                        </ul>
+                        <div class="service-actions">
+                            <span class="service-cta">Learn More →</span>
+                            <span class="service-cta secondary">Get Quote</span>
+                        </div>
+                    </a>
+
+                    <a href="/carpet-stretching" class="service-card service--stretching">
+                        <div class="service-icon">
+                            <i class="fas fa-wind" aria-hidden="true"></i>
+                        </div>
+                        <h3>Carpet Re-stretching</h3>
+                        <p>Tripping hazards be gone! We smooth out wrinkles and bumps, extending your carpet's life and improving safety.</p>
+                        <ul class="service-features">
+                            <li>Wrinkle removal</li>
+                            <li>Bump elimination</li>
+                            <li>Proper tensioning</li>
+                            <li>Extended carpet life</li>
+                        </ul>
+                        <div class="service-actions">
+                            <span class="service-cta">Learn More →</span>
+                            <span class="service-cta secondary">Get Quote</span>
+                        </div>
+                    </a>
+
+                    <a href="/water-damage-restoration" class="service-card service--water">
+                        <div class="service-icon">
+                            <i class="fas fa-tint" aria-hidden="true"></i>
+                        </div>
+                        <h3>Water Damage Restoration</h3>
+                        <p>Fast 24/7 flood response. We extract water, prevent mold, and restore your carpets to a safe, dry state.</p>
+                        <ul class="service-features">
+                            <li>24/7 emergency response</li>
+                            <li>Mold prevention</li>
+                            <li>Complete restoration</li>
+                            <li>Insurance assistance</li>
+                        </ul>
+                        <div class="service-actions">
+                            <span class="service-cta">Learn More →</span>
+                            <span class="service-cta secondary">Get Quote</span>
+                        </div>
+                    </a>
+
+                    <a href="/carpet-cleaning" class="service-card service--cleaning">
+                        <div class="service-icon">
+                            <i class="fas fa-couch" aria-hidden="true"></i>
+                        </div>
+                        <h3>Carpet Steam Cleaning</h3>
+                        <p>Our powerful steam cleaning removes deep-seated dirt, allergens, and odors, leaving carpets fresh and hygienic.</p>
+                        <ul class="service-features">
+                            <li>Deep stain removal</li>
+                            <li>Allergen elimination</li>
+                            <li>Odor neutralization</li>
+                            <li>Fast drying</li>
+                        </ul>
+                        <div class="service-actions">
+                            <span class="service-cta">Learn More →</span>
+                            <span class="service-cta secondary">Get Quote</span>
+                        </div>
+                    </a>
+
+                    <a href="/carpet-installation" class="service-card service--installation">
+                        <div class="service-icon">
+                            <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                        </div>
+                        <h3>Carpet Installation</h3>
+                        <p>Get a flawless finish with our expert installation. We ensure a perfect fit that enhances your space's comfort and style.</p>
+                        <ul class="service-features">
+                            <li>Custom fitting</li>
+                            <li>Professional installation</li>
+                            <li>Style consultation</li>
+                            <li>Warranty included</li>
+                        </ul>
+                        <div class="service-actions">
+                            <span class="service-cta">Learn More →</span>
+                            <span class="service-cta secondary">Get Quote</span>
+                        </div>
+                    </a>
+
+                    <a href="/upholstery-cleaning" class="service-card service--upholstery">
+                        <div class="service-icon">
+                            <i class="fas fa-couch" aria-hidden="true"></i>
+                        </div>
+                        <h3>Upholstery Cleaning</h3>
+                        <p>Revitalize your sofas and chairs. Our gentle yet effective cleaning removes stains and odors from all fabric types.</p>
+                        <ul class="service-features">
+                            <li>Fabric-safe cleaning</li>
+                            <li>Stain removal</li>
+                            <li>Odor elimination</li>
+                            <li>Protection treatment</li>
+                        </ul>
+                        <div class="service-actions">
+                            <span class="service-cta">Learn More →</span>
+                            <span class="service-cta secondary">Get Quote</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="section-padding">
+            <div class="container">
+                <div class="why-us-content">
+                    <div class="why-us-text fade-in">
+                        <h2>The Legend Difference: Quality You Can See & Feel</h2>
+                        <p>We're not just cleaners; we're caretakers of your home's comfort. Our commitment to quality, transparency, and respect ensures a five-star experience every time.</p>
+
+                        <div class="benefits-grid">
+                            <div class="benefit">
+                                <i class="fas fa-certificate" aria-hidden="true"></i>
+                                <div>
+                                    <h4>Certified & Insured</h4>
+                                    <p>Fully licensed, bonded, and insured technicians</p>
+                                </div>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                                <div>
+                                    <h4>Transparent Pricing</h4>
+                                    <p>Upfront, honest pricing with no hidden fees</p>
+                                </div>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                                <div>
+                                    <h4>Fast Service</h4>
+                                    <p>Same-day service available with flexible scheduling</p>
+                                </div>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-heart" aria-hidden="true"></i>
+                                <div>
+                                    <h4>Respectful Service</h4>
+                                    <p>We treat your home with the utmost care and respect</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#contact" class="cta-button">Get Your Free Quote</a>
+                    </div>
+
+                    <div class="before-after-section scale-in">
+                        <h3>See the Difference</h3>
+                        <div class="ba-slider">
+                            <img src="{{ url_for('static', filename='images/after.jpeg') }}" alt="A professionally cleaned carpet, looking bright and new." class="before-img" loading="lazy">
+                            <div class="after-img-container">
+                                <img src="{{ url_for('static', filename='images/before.jpeg') }}" alt="A dirty and stained carpet before professional cleaning." class="after-img" loading="lazy">
+                            </div>
+                            <div class="slider-handle" aria-label="Drag to compare before and after images">
+                                <div><i class="fas fa-arrows-alt-h" aria-hidden="true"></i></div>
+                            </div>
+                        </div>
+                        <div class="ba-labels">
+                            <span>Before</span>
+                            <span>After</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section-padding">
+            <div class="container">
+                <div class="section-header text-center fade-in">
+                    <h2>Trusted by Homeowners Across Melbourne</h2>
+                    <p class="section-subtitle">Don't just take our word for it. Here's what our happy customers have to say about their experience with Legend Carpet Services.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p>"Absolutely phenomenal service! My carpets look brand new. The technician was professional and on time. Highly recommend Legend Carpet!"</p>
+                        <div class="testimonial-author">
+                            <strong>Sarah J.</strong>
+                            <span>Werribee</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p>"They saved my bond! A huge red wine stain that I thought was permanent is completely gone. Fast, affordable, and incredible results."</p>
+                        <div class="testimonial-author">
+                            <strong>Michael B.</strong>
+                            <span>Point Cook</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p>"The best carpet repair in Melbourne. They patched a burn mark seamlessly. You can't even tell it was there. Thank you so much!"</p>
+                        <div class="testimonial-author">
+                            <strong>Emily R.</strong>
+                            <span>Southbank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Areas Section -->
+        <section id="service-areas" class="section-padding">
+            <div class="container">
+                <div class="section-header text-center fade-in">
+                    <h2>Proudly Serving Melbourne & Surrounding Suburbs</h2>
+                    <p class="section-subtitle">Professional carpet services available throughout the greater Melbourne area</p>
+                </div>
+
+                <div class="areas-content">
+                    <div class="areas-list fade-in">
+                        <div class="area-group">
+                            <h4>Western Suburbs</h4>
+                            <div class="area-tags">
+                                <span>Werribee</span>
+                                <span>Point Cook</span>
+                                <span>Tarneit</span>
+                                <span>Hoppers Crossing</span>
+                                <span>Wyndham Vale</span>
+                                <span>Truganina</span>
+                            </div>
+                        </div>
+
+                        <div class="area-group">
+                            <h4>Inner City</h4>
+                            <div class="area-tags">
+                                <span>Melbourne CBD</span>
+                                <span>South Yarra</span>
+                                <span>Richmond</span>
+                                <span>Footscray</span>
+                                <span>Essendon</span>
+                                <span>Brunswick</span>
+                            </div>
+                        </div>
+
+                        <div class="area-group">
+                            <h4>Northern Suburbs</h4>
+                            <div class="area-tags">
+                                <span>Reservoir</span>
+                                <span>Preston</span>
+                                <span>Thornbury</span>
+                                <span>Northcote</span>
+                                <span>Bundoora</span>
+                                <span>Mill Park</span>
+                            </div>
+                        </div>
+
+                        <div class="area-group">
+                            <h4>Eastern Suburbs</h4>
+                            <div class="area-tags">
+                                <span>Box Hill</span>
+                                <span>Doncaster</span>
+                                <span>Blackburn</span>
+                                <span>Glen Waverley</span>
+                                <span>Mount Waverley</span>
+                                <span>Chadstone</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-container fade-in">
+    <div class="map-responsive">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.332792300441!2d144.9194!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ4JzQ5LjAiUyAxNDTCsDU1JzA5LjgiRQ!5e0!3m2!1sen!2sau!4v1234567890"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-padding">
+            <div class="container">
+                <div class="section-header text-center fade-in">
+                    <h2>Book Today, Enjoy a Cleaner Home Tomorrow</h2>
+                    <p class="section-subtitle">Ready for spotless carpets? Fill out the form below or give us a call for a fast, free, and no-obligation quote.</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info fade-in">
+                        <div class="contact-item">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <div>
+                                <h4>Call Us</h4>
+                                <a href="tel:0416388777">0416 388 777</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <div>
+                                <h4>Email Us</h4>
+                                <a href="mailto:info@legendcarpet.com.au">info@legendcarpet.com.au</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <div>
+                                <h4>Service Area</h4>
+                                <span>Melbourne & Surrounding Suburbs</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-clock" aria-hidden="true"></i>
+                            <div>
+                                <h4>Service Hours</h4>
+                                <span>Mon-Sat: 7AM-7PM<br>Emergency: 24/7</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container fade-in">
+                        <form id="contact-form" class="contact-form multi-step-form" action="your-form-handler-url" method="POST">
+                            <h3>Get Your Free Quote</h3>
+
+                            <div class="progress-bar">
+                                <div class="progress-bar-step active">1</div>
+                                <div class="progress-bar-step">2</div>
+                                <div class="progress-bar-step">3</div>
+                            </div>
+
+                            <fieldset class="form-step active">
+                                <p class="honeypot">
+                                    <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+                                </p>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Name *</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone *</label>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="suburb">Suburb/Postcode *</label>
+                                        <input type="text" id="suburb" name="suburb" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email *</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <button type="button" class="cta-button next-btn" style="float: right;">Next</button>
+                            </fieldset>
+
+                            <fieldset class="form-step">
+                                <div class="form-group">
+                                    <label for="service">Service Required</label>
+                                    <select id="service" name="service">
+                                        <option value="" disabled selected>Select a service</option>
+                                        <option value="carpet-repair">Carpet Repair Services</option>
+                                        <option value="carpet-stretching">Carpet Re-Stretching</option>
+                                        <option value="carpet-installation">Carpet Installation</option>
+                                        <option value="water-damage">Water Damage Restoration</option>
+                                        <option value="carpet-cleaning">Carpet Steam Cleaning</option>
+                                        <option value="upholstery">Upholstery Cleaning</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description of Issue</label>
+                                    <textarea id="description" name="description" rows="4" placeholder="Please describe your carpet issue or requirements..."></textarea>
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="button" class="cta-button cta-secondary prev-btn">Previous</button>
+                                    <button type="button" class="cta-button next-btn">Next</button>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="form-step">
+                                <div class="form-group">
+                                    <label for="photos">Photos (Optional)</label>
+                                    <input type="file" id="photos" name="photos" multiple accept="image/*">
+                                    <small>Upload photos of the problem area for better assessment</small>
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="button" class="cta-button cta-secondary prev-btn">Previous</button>
+                                    <button type="submit" class="cta-button">Get Free Quote</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="{{ url_for('static', filename='images/legend.png') }}" alt="Legend Carpet Services Logo - Melbourne's Premier Carpet Experts" style="height: 110px;" loading="lazy">
+                    </div>
+                    <p>Your trusted partner for professional carpet cleaning and repairs in Melbourne. We are committed to quality and customer satisfaction.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#why-us">Why Us</a></li>
+                        <li><a href="#service-areas">Service Areas</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#services">Carpet Repair</a></li>
+                        <li><a href="#services">Carpet Cleaning</a></li>
+                        <li><a href="#services">Carpet Stretching</a></li>
+                        <li><a href="#services">Water Damage</a></li>
+                        <li><a href="#services">Carpet Installation</a></li>
+                        <li><a href="#services">Upholstery Cleaning</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info-footer">
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:0416388777">0416 388 777</a></p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:info@legendcarpet.com.au">info@legendcarpet.com.au</a></p>
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Melbourne & Surrounding Suburbs</p>
+                        <p><i class="fas fa-clock" aria-hidden="true"></i> Mon-Sat: 7AM-7PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Legend Carpet Services. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="tel:0416388777" class="floating-call-btn" aria-label="Call Now">
+        <i class="fas fa-phone" aria-hidden="true"></i>
+    </a>
+
+    <button class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.querySelector('.hero-video');
+            if (video) {
+                video.play().catch(function(error) {
+                    console.log('Video autoplay was prevented: ', error);
+                });
+            }
+        });
+    </script>
+
+    <!-- 
+    === EXTENSION GUIDE ===
+    This site is built with a modular and token-based approach.
+
+    To add new design tokens (colors, spacing, etc.):
+    1. Open style.css and find the :root selector.
+    2. Add new CSS variables following the existing naming convention (e.g., --color-new: #RRGGBB;).
+
+    To add a new component:
+    1. Create the HTML structure using semantic tags.
+    2. In style.css, create a new section for your component (e.g., /* ===== NEW COMPONENT ===== */).
+    3. Use the CSS variables from :root for consistency in color, spacing, fonts, etc.
+    4. Ensure you add responsive styles in the media queries at the bottom of the file.
+
+    To add scroll animations:
+    1. Add the class "fade-in" or "scale-in" to the HTML element you want to animate.
+    2. The script.js file uses an IntersectionObserver to automatically add an "in-view" class when the element enters the viewport, triggering the animation.
+    3. Animations respect the 'prefers-reduced-motion' user setting.
+
+    To change the hero video:
+    1. Place your new video files (e.g., .mp4, .webm) in the /assets/media/ directory.
+    2. Update the <source> tags inside the <video> element in index.html.
+    3. Update the poster="path/to/fallback-image.jpg" with a new static image for fallbacks.
+    -->
+</body>
+</html>
