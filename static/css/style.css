@@ -422,7 +422,6 @@ a:hover {
     color: var(--primary-contrast);
     overflow: hidden;
     padding-top: 100px; /* Account for header */
-    background: #0f172a; /* Simple fallback color only */
 }
 
 .hero-video-container {
@@ -432,27 +431,12 @@ a:hover {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -1;
+    z-index: 1;
+    background-image: url('../videos/hero-backgroundgif.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
-.hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    /* Ensure smooth playback */
-    transform: scale(1.02); /* Slight scale to avoid edge artifacts */
-    filter: brightness(0.8) contrast(1.1); /* Enhance video for better text readability */
-}
-
-/* Fallback for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .hero-video {
-        display: none;
-    }
-}
-
-
 
 .hero-overlay {
     position: absolute;
@@ -461,12 +445,10 @@ a:hover {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.5) 100%);
-    z-index: 0;
-    /* Add subtle animation to the overlay */
+    z-index: 2;
     animation: overlayPulse 8s ease-in-out infinite alternate;
 }
 
-/* Subtle overlay animation for dynamic feel */
 @keyframes overlayPulse {
     0% {
         background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.5) 100%);
@@ -635,10 +617,6 @@ a:hover {
         animation: none;
     }
     
-    .hero-video {
-        display: none;
-    }
-    
     .hero-video-fallback {
         display: block;
     }
@@ -728,38 +706,20 @@ a:hover {
 }
 
 .service-card {
-    background: var(--bg);
-    padding: 0; /* Padding moved to the new link wrapper */
+    position: relative;
+    overflow: hidden;
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-2);
     transition: all var(--transition-normal);
-    border: 1px solid rgba(15, 23, 42, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card-link {
-    display: block;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
     padding: var(--space-8);
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--muted));
-    transform: scaleX(0);
-    transition: transform var(--transition-normal);
-}
-
-.service-card:hover::before {
-    transform: scaleX(1);
+    text-align: center;
+    background-color: #0f172a; /* Fallback color */
 }
 
 .service-card:hover {
@@ -767,10 +727,24 @@ a:hover {
     box-shadow: var(--shadow-3);
 }
 
+.service-card-link {
+    position: relative;
+    z-index: 3; /* Highest z-index */
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
 .service-icon {
     width: 80px;
     height: 80px;
-    background: var(--primary-gradient);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-xl);
     display: flex;
     align-items: center;
@@ -790,71 +764,38 @@ a:hover {
 
 .service-card h3 {
     margin-bottom: var(--space-3);
-    color: var(--primary);
+    color: var(--primary-contrast);
 }
 
 .service-card p {
     margin-bottom: var(--space-4);
-    color: var(--muted);
+    color: var(--primary-contrast);
 }
 
-.service-features {
-    list-style: none;
-    margin-bottom: var(--space-6);
-}
-
-.service-features li {
-    padding: var(--space-2) 0;
-    color: var(--muted);
-    position: relative;
-    padding-left: var(--space-6);
-}
-
-.service-features li::before {
-    content: '✓';
+/* ===== SERVICE CARD ANIMATED BACKGROUND ===== */
+.service-video {
     position: absolute;
+    top: 0;
     left: 0;
-    color: var(--success);
-    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Behind overlay and content */
 }
 
-.service-actions {
-    display: flex;
-    gap: var(--space-3);
-    margin-top: var(--space-6);
-    flex-wrap: wrap;
+.service-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    transition: background-color var(--transition-normal);
+    z-index: 2; /* Above video, behind content */
 }
 
-.service-cta {
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    transition: all var(--transition-fast);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-md);
-    border: 1px solid transparent;
-    font-size: var(--text-sm);
-}
-
-.service-cta:hover {
-    color: var(--primary);
-    transform: translateX(4px);
-    background-color: var(--surface);
-    border-color: var(--primary);
-}
-
-.service-cta.secondary {
-    color: var(--muted);
-    font-weight: 500;
-}
-
-.service-cta.secondary:hover {
-    color: var(--primary);
-    background-color: var(--surface);
-    border-color: var(--primary);
+.service-card:hover .service-video-overlay {
+    background-color: rgba(15, 23, 42, 0.75);
 }
 
 /* ===== WHY US SECTION ===== */
@@ -1115,8 +1056,7 @@ a:hover {
     border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: var(--shadow-3);
-    height: 100%;
-    min-height: 450px;
+    height: 450px;
     width: 100%;
 }
 
@@ -1940,19 +1880,43 @@ body .header-contact a {
     }
 }
 
-
-/* Debug: Add a border to video container to see if it's positioned correctly */
-.hero-video-container {
-    border: 2px solid red; /* Remove this after testing */
+/* Service Area Tabs */
+.areas-tabs-container {
+    margin-top: 2rem;
 }
 
-/* Ensure video container is properly sized */
-.hero-video-container {
-    min-height: 100vh;
-    min-width: 100vw;
+.area-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #eee;
 }
 
-/* Force video to be visible during testing */
-.hero-video[poster] {
-    background: none !important;
+.tab-link {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-link.active,
+.tab-link:hover {
+    color: #007bff;
+    border-bottom-color: #007bff;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
 }

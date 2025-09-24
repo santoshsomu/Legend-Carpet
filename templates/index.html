@@ -51,7 +51,7 @@
                         <i class="fas fa-phone" aria-hidden="true"></i>
                         <span>0416 388 777</span>
                     </a>
-                    <a href="#contact" class="cta-button header-cta">Get Quote</a>
+                    <a href="#contact" class="cta-button header-cta cta-secondary">Get Quote</a>
                 </div>
 
                 <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
@@ -67,10 +67,6 @@
         <!-- Hero Section -->
         <section id="hero">
             <div class="hero-video-container">
-                <video class="hero-video" autoplay loop muted playsinline preload="auto">
-    <source src="{{ url_for('static', filename='videos/hero-background.mp4') }}" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
             </div>
             <div class="hero-overlay"></div>
             <div class="container">
@@ -188,113 +184,38 @@
                 </div>
 
                 <div class="services-grid">
-                    <a href="/carpet-repair" class="service-card service--repair">
-                        <div class="service-icon">
-                            <i class="fas fa-cut" aria-hidden="true"></i>
-                        </div>
-                        <h3>Carpet Repair & Patching</h3>
-                        <p>Don't replace, repair! We fix burns, tears, and pet damage, seamlessly restoring your carpet's original look.</p>
-                        <ul class="service-features">
-                            <li>Burn mark repair</li>
-                            <li>Tear and hole patching</li>
-                            <li>Stain removal</li>
-                            <li>Seam repair</li>
-                        </ul>
-                        <div class="service-actions">
-                            <span class="service-cta">Learn More →</span>
-                            <span class="service-cta secondary">Get Quote</span>
-                        </div>
-                    </a>
+                    {% for service in services.values() %}
+                    <div class="service-card fade-in">
+                        <!-- Animated background -->
+                        <img src="{{ url_for('static', filename=service.video_url) }}" class="service-video" alt="{{ service.name }} background animation" loading="lazy">
+                        <div class="service-video-overlay"></div>
 
-                    <a href="/carpet-stretching" class="service-card service--stretching">
-                        <div class="service-icon">
-                            <i class="fas fa-wind" aria-hidden="true"></i>
-                        </div>
-                        <h3>Carpet Re-stretching</h3>
-                        <p>Tripping hazards be gone! We smooth out wrinkles and bumps, extending your carpet's life and improving safety.</p>
-                        <ul class="service-features">
-                            <li>Wrinkle removal</li>
-                            <li>Bump elimination</li>
-                            <li>Proper tensioning</li>
-                            <li>Extended carpet life</li>
-                        </ul>
-                        <div class="service-actions">
-                            <span class="service-cta">Learn More →</span>
-                            <span class="service-cta secondary">Get Quote</span>
-                        </div>
-                    </a>
-
-                    <a href="/water-damage-restoration" class="service-card service--water">
-                        <div class="service-icon">
-                            <i class="fas fa-tint" aria-hidden="true"></i>
-                        </div>
-                        <h3>Water Damage Restoration</h3>
-                        <p>Fast 24/7 flood response. We extract water, prevent mold, and restore your carpets to a safe, dry state.</p>
-                        <ul class="service-features">
-                            <li>24/7 emergency response</li>
-                            <li>Mold prevention</li>
-                            <li>Complete restoration</li>
-                            <li>Insurance assistance</li>
-                        </ul>
-                        <div class="service-actions">
-                            <span class="service-cta">Learn More →</span>
-                            <span class="service-cta secondary">Get Quote</span>
-                        </div>
-                    </a>
-
-                    <a href="/carpet-cleaning" class="service-card service--cleaning">
-                        <div class="service-icon">
-                            <i class="fas fa-couch" aria-hidden="true"></i>
-                        </div>
-                        <h3>Carpet Steam Cleaning</h3>
-                        <p>Our powerful steam cleaning removes deep-seated dirt, allergens, and odors, leaving carpets fresh and hygienic.</p>
-                        <ul class="service-features">
-                            <li>Deep stain removal</li>
-                            <li>Allergen elimination</li>
-                            <li>Odor neutralization</li>
-                            <li>Fast drying</li>
-                        </ul>
-                        <div class="service-actions">
-                            <span class="service-cta">Learn More →</span>
-                            <span class="service-cta secondary">Get Quote</span>
-                        </div>
-                    </a>
-
-                    <a href="/carpet-installation" class="service-card service--installation">
-                        <div class="service-icon">
-                            <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                        </div>
-                        <h3>Carpet Installation</h3>
-                        <p>Get a flawless finish with our expert installation. We ensure a perfect fit that enhances your space's comfort and style.</p>
-                        <ul class="service-features">
-                            <li>Custom fitting</li>
-                            <li>Professional installation</li>
-                            <li>Style consultation</li>
-                            <li>Warranty included</li>
-                        </ul>
-                        <div class="service-actions">
-                            <span class="service-cta">Learn More →</span>
-                            <span class="service-cta secondary">Get Quote</span>
-                        </div>
-                    </a>
-
-                    <a href="/upholstery-cleaning" class="service-card service--upholstery">
-                        <div class="service-icon">
-                            <i class="fas fa-couch" aria-hidden="true"></i>
-                        </div>
-                        <h3>Upholstery Cleaning</h3>
-                        <p>Revitalize your sofas and chairs. Our gentle yet effective cleaning removes stains and odors from all fabric types.</p>
-                        <ul class="service-features">
-                            <li>Fabric-safe cleaning</li>
-                            <li>Stain removal</li>
-                            <li>Odor elimination</li>
-                            <li>Protection treatment</li>
-                        </ul>
-                        <div class="service-actions">
-                            <span class="service-cta">Learn More →</span>
-                            <span class="service-cta secondary">Get Quote</span>
-                        </div>
-                    </a>
+                        <!-- Clickable content -->
+                        <a href="{{ url_for('service', service_name=service.url_name) }}" class="service-card-link">
+                            <div class="service-icon">
+                                {% if service.url_name == 'carpet-cleaning' %}
+                                    <i class="fas fa-wind"></i>
+                                {% elif service.url_name == 'carpet-repair' %}
+                                    <i class="fas fa-tools"></i>
+                                {% elif service.url_name == 'carpet-stretching' %}
+                                    <i class="fas fa-ruler-combined"></i>
+                                {% elif service.url_name == 'water-damage-restoration' %}
+                                    <i class="fas fa-water"></i>
+                                {% elif service.url_name == 'carpet-installation' %}
+                                    <i class="fas fa-layer-group"></i>
+                                {% elif service.url_name == 'upholstery-cleaning' %}
+                                    <i class="fas fa-couch"></i>
+                                {% else %}
+                                    <i class="fas fa-info-circle"></i>
+                                {% endif %}
+                            </div>
+                            <div class="service-content">
+                                <h3>{{ service.name }}</h3>
+                                <p>{{ service.description }}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -302,8 +223,8 @@
         <!-- Why Choose Us Section -->
         <section id="why-us" class="section-padding">
             <div class="container">
-                <div class="why-us-content">
-                    <div class="why-us-text fade-in">
+                <div class="why-us-content" style="display: flex; align-items: center;">
+                    <div class="why-us-text fade-in" style="flex: 1; padding-right: 20px;">
                         <h2>The Legend Difference: Quality You Can See & Feel</h2>
                         <p>We're not just cleaners; we're caretakers of your home's comfort. Our commitment to quality, transparency, and respect ensures a five-star experience every time.</p>
 
@@ -341,21 +262,8 @@
                         <a href="#contact" class="cta-button">Get Your Free Quote</a>
                     </div>
 
-                    <div class="before-after-section scale-in">
-                        <h3>See the Difference</h3>
-                        <div class="ba-slider">
-                            <img src="{{ url_for('static', filename='images/after.jpeg') }}" alt="A professionally cleaned carpet, looking bright and new." class="before-img" loading="lazy">
-                            <div class="after-img-container">
-                                <img src="{{ url_for('static', filename='images/before.jpeg') }}" alt="A dirty and stained carpet before professional cleaning." class="after-img" loading="lazy">
-                            </div>
-                            <div class="slider-handle" aria-label="Drag to compare before and after images">
-                                <div><i class="fas fa-arrows-alt-h" aria-hidden="true"></i></div>
-                            </div>
-                        </div>
-                        <div class="ba-labels">
-                            <span>Before</span>
-                            <span>After</span>
-                        </div>
+                    <div style="flex: 1;">
+                        <img src="{{ url_for('static', filename='images/ba.png') }}" alt="Legend Carpet Services" style="max-width: 100%; height: auto; border-radius: 10px;">
                     </div>
                 </div>
             </div>
@@ -422,74 +330,160 @@
         <section id="service-areas" class="section-padding">
             <div class="container">
                 <div class="section-header text-center fade-in">
-                    <h2>Proudly Serving Melbourne & Surrounding Suburbs</h2>
-                    <p class="section-subtitle">Professional carpet services available throughout the greater Melbourne area</p>
+                    <h2>Serving All of Melbourne and Beyond</h2>
+                    <p class="section-subtitle">From the CBD to regional Victoria, our expert team is ready to serve you.</p>
                 </div>
 
-                <div class="areas-content">
-                    <div class="areas-list fade-in">
-                        <div class="area-group">
-                            <h4>Western Suburbs</h4>
-                            <div class="area-tags">
-                                <span>Werribee</span>
-                                <span>Point Cook</span>
-                                <span>Tarneit</span>
-                                <span>Hoppers Crossing</span>
-                                <span>Wyndham Vale</span>
-                                <span>Truganina</span>
-                            </div>
-                        </div>
+                <div class="map-container fade-in">
+                    <div class="map-responsive">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.996559388148!2d144.9234893764491!3d-37.76615597198642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65e098f83773b%3A0x26b82736132a829!2sEverage%20St%2C%20Moonee%20Ponds%20VIC%203039%2C%20Australia!5e0!3m2!1sen!2sus!4v1678886400000!5m2!1sen!2sus"
+                            width="600"
+                            height="450"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
 
-                        <div class="area-group">
-                            <h4>Inner City</h4>
-                            <div class="area-tags">
-                                <span>Melbourne CBD</span>
-                                <span>South Yarra</span>
-                                <span>Richmond</span>
-                                <span>Footscray</span>
-                                <span>Essendon</span>
-                                <span>Brunswick</span>
-                            </div>
-                        </div>
-
-                        <div class="area-group">
-                            <h4>Northern Suburbs</h4>
-                            <div class="area-tags">
-                                <span>Reservoir</span>
-                                <span>Preston</span>
-                                <span>Thornbury</span>
-                                <span>Northcote</span>
-                                <span>Bundoora</span>
-                                <span>Mill Park</span>
-                            </div>
-                        </div>
-
-                        <div class="area-group">
-                            <h4>Eastern Suburbs</h4>
-                            <div class="area-tags">
-                                <span>Box Hill</span>
-                                <span>Doncaster</span>
-                                <span>Blackburn</span>
-                                <span>Glen Waverley</span>
-                                <span>Mount Waverley</span>
-                                <span>Chadstone</span>
-                            </div>
-                        </div>
+                <div class="areas-tabs-container fade-in">
+                    <div class="area-tabs">
+                        <button class="tab-link active" data-tab="inner-city">Inner City & Bayside</button>
+                        <button class="tab-link" data-tab="western">Western Suburbs</button>
+                        <button class="tab-link" data-tab="northern">Northern Suburbs</button>
+                        <button class="tab-link" data-tab="eastern">Eastern Suburbs</button>
+                        <button class="tab-link" data-tab="south-eastern">South-Eastern Suburbs</button>
+                        <button class="tab-link" data-tab="regional">Regional & Peninsula</button>
                     </div>
 
-                    <div class="map-container fade-in">
-    <div class="map-responsive">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.332792300441!2d144.9194!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ4JzQ5LjAiUyAxNDTCsDU1JzA5LjgiRQ!5e0!3m2!1sen!2sau!4v1234567890"
-            width="600"
-            height="450"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-</div>
+                    <div id="inner-city" class="tab-content active">
+                        <div class="area-tags">
+                            <span>Melbourne CBD</span>
+                            <span>South Yarra</span>
+                            <span>Southbank</span>
+                            <span>Richmond</span>
+                            <span>Brunswick</span>
+                            <span>St Kilda</span>
+                            <span>Brighton</span>
+                            <span>Toorak</span>
+                            <span>Malvern</span>
+                            <span>Armadale</span>
+                            <span>Kew</span>
+                            <span>Hawthorn</span>
+                            <span>Glen Iris</span>
+                            <span>Docklands</span>
+                        </div>
+                    </div>
+                    <div id="western" class="tab-content">
+                        <div class="area-tags">
+                            <span>Werribee</span>
+                            <span>Point Cook</span>
+                            <span>Tarneit</span>
+                            <span>Hoppers Crossing</span>
+                            <span>Wyndham Vale</span>
+                            <span>Truganina</span>
+                            <span>Sunshine</span>
+                            <span>Altona</span>
+                            <span>Deer Park</span>
+                            <span>Caroline Springs</span>
+                            <span>Derrimut</span>
+                            <span>West Footscray</span>
+                            <span>Yarraville</span>
+                            <span>Newport</span>
+                            <span>Delahey</span>
+                            <span>Taylors Lakes</span>
+                        </div>
+                    </div>
+                    <div id="northern" class="tab-content">
+                        <div class="area-tags">
+                            <span>Essendon</span>
+                            <span>Moonee Ponds</span>
+                            <span>Preston</span>
+                            <span>Reservoir</span>
+                            <span>Coburg</span>
+                            <span>Pascoe Vale</span>
+                            <span>Thomastown</span>
+                            <span>Epping</span>
+                            <span>Lalor</span>
+                            <span>Bundoora</span>
+                            <span>Greensborough</span>
+                            <span>Craigieburn</span>
+                            <span>Broadmeadows</span>
+                            <span>Glenroy</span>
+                            <span>Tullamarine</span>
+                            <span>Airport West</span>
+                            <span>Keilor East</span>
+                            <span>Heidelberg</span>
+                            <span>Fawkner</span>
+                            <span>South Morang</span>
+                            <span>Coburg North</span>
+                            <span>Oak Park</span>
+                            <span>Ascot Vale</span>
+                            <span>Avondale Heights</span>
+                            <span>Heidelberg Heights</span>
+                            <span>Thornbury</span>
+                            <span>Northcote</span>
+                            <span>Mill Park</span>
+                        </div>
+                    </div>
+                    <div id="eastern" class="tab-content">
+                        <div class="area-tags">
+                            <span>Box Hill</span>
+                            <span>Doncaster</span>
+                            <span>Blackburn</span>
+                            <span>Glen Waverley</span>
+                            <span>Mount Waverley</span>
+                            <span>Chadstone</span>
+                            <span>Ringwood</span>
+                            <span>Wantirna</span>
+                            <span>Rowville</span>
+                            <span>Burwood East</span>
+                            <span>Donvale</span>
+                            <span>Eltham</span>
+                            <span>Bayswater</span>
+                            <span>Doncaster East</span>
+                            <span>Montmorency</span>
+                            <span>Watsonia</span>
+                            <span>Box Hill North</span>
+                        </div>
+                    </div>
+                    <div id="south-eastern" class="tab-content">
+                        <div class="area-tags">
+                            <span>Dandenong</span>
+                            <span>Frankston</span>
+                            <span>Pakenham</span>
+                            <span>Cranbourne</span>
+                            <span>Narre Warren</span>
+                            <span>Berwick</span>
+                            <span>Clayton</span>
+                            <span>Oakleigh</span>
+                            <span>Springvale</span>
+                            <span>Moorabbin</span>
+                            <span>Cheltenham</span>
+                            <span>Keysborough</span>
+                            <span>Carrum Downs</span>
+                            <span>Hampton Park</span>
+                            <span>Mulgrave</span>
+                            <span>Noble Park</span>
+                            <span>Cranbourne West</span>
+                            <span>Carnegie</span>
+                            <span>Patterson Lakes</span>
+                        </div>
+                    </div>
+                    <div id="regional" class="tab-content">
+                        <div class="area-tags">
+                            <span>Geelong</span>
+                            <span>Ballarat</span>
+                            <span>Bendigo</span>
+                            <span>Sunbury</span>
+                            <span>Mount Eliza</span>
+                            <span>Mount Martha</span>
+                            <span>Seymour</span>
+                            <span>Waurn Ponds</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -686,16 +680,7 @@
     <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var video = document.querySelector('.hero-video');
-            if (video) {
-                video.play().catch(function(error) {
-                    console.log('Video autoplay was prevented: ', error);
-                });
-            }
-        });
-    </script>
+    
 
     <!-- 
     === EXTENSION GUIDE ===
@@ -715,11 +700,6 @@
     1. Add the class "fade-in" or "scale-in" to the HTML element you want to animate.
     2. The script.js file uses an IntersectionObserver to automatically add an "in-view" class when the element enters the viewport, triggering the animation.
     3. Animations respect the 'prefers-reduced-motion' user setting.
-
-    To change the hero video:
-    1. Place your new video files (e.g., .mp4, .webm) in the /assets/media/ directory.
-    2. Update the <source> tags inside the <video> element in index.html.
-    3. Update the poster="path/to/fallback-image.jpg" with a new static image for fallbacks.
     -->
 </body>
 </html>

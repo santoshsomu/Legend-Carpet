@@ -145,13 +145,24 @@ function initializeMobileMenu() {
             }
         });
     }
-}document.addEventListener('DOMContentLoaded', () => {
-    // Initialize basic sliders (fallback for non-portfolio pages)
-    initializeBasicSliders();
-    
-    // Initialize scroll animations
-    initializeScrollAnimations();
-    
-    // Initialize mobile menu
-    initializeMobileMenu();
+}
+
+// Service Area Tabs
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = document.getElementById(tab.dataset.tab);
+
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            tabContents.forEach(tc => tc.classList.remove('active'));
+            if (target) {
+                target.classList.add('active');
+            }
+        });
+    });
 });

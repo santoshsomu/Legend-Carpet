@@ -1,13 +1,33 @@
 <div class="services-grid">
     {% for service in services %}
-    <div class="service-card scale-in">
+    <div class="service-card fade-in">
+        <!-- Animated background -->
+        <img src="{{ url_for('static', filename=service.video_url) }}" class="service-video" alt="{{ service.name }} background animation">
+        <div class="service-video-overlay"></div>
+
+        <!-- Clickable content -->
         <a href="{{ url_for('service', service_name=service.url_name) }}" class="service-card-link">
             <div class="service-icon">
-                <i class="{{ service.icon }}"></i>
+                {% if service.url_name == 'carpet-cleaning' %}
+                    <i class="fas fa-wind"></i>
+                {% elif service.url_name == 'carpet-repair' %}
+                    <i class="fas fa-tools"></i>
+                {% elif service.url_name == 'carpet-stretching' %}
+                    <i class="fas fa-ruler-combined"></i>
+                {% elif service.url_name == 'water-damage-restoration' %}
+                    <i class="fas fa-water"></i>
+                {% elif service.url_name == 'carpet-installation' %}
+                    <i class="fas fa-carpet"></i>
+                {% elif service.url_name == 'upholstery-cleaning' %}
+                    <i class="fas fa-couch"></i>
+                {% else %}
+                    <i class="fas fa-info-circle"></i>
+                {% endif %}
             </div>
-            <h3>{{ service.name }}</h3>
-            <p>{{ service.description }}</p>
-            <span class="service-cta">Learn More <i class="fas fa-arrow-right"></i></span>
+            <div class="service-content">
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description }}</p>
+            </div>
         </a>
     </div>
     {% endfor %}
