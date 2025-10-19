@@ -1,34 +1,18 @@
 import os
 import logging  # Add this import
 from flask import Flask, render_template, abort, request, redirect, url_for, flash
-from flask_mail import Mail, Message
-from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
 # --- Production-ready Configuration ---
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'a-very-secret-key-that-should-be-changed')
 
-# Email Configuration with environment variables for production
-app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
-app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
-app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS', 'True').lower() == 'true'
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', 'akshaysomu@gmail.com')
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', 'sjsu pbdj qcyi nwmf')
-app.config['MAIL_DEFAULT_SENDER'] = ('Legend Carpet Services', app.config['MAIL_USERNAME'])
-app.config['MAIL_MAX_EMAILS'] = None
-app.config['MAIL_ASCII_ATTACHMENTS'] = False
-app.config['MAIL_DEBUG'] = os.environ.get('FLASK_ENV') == 'development'
-
-# Add these configurations
+# File upload configurations
 UPLOAD_FOLDER = 'temp_uploads'
 ALLOWED_EXTENSIONS = {'gif', 'png', 'jpg', 'jpeg', 'mp4', 'mov'}
 MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10MB max file size
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-mail = Mail(app)
 
 # Comprehensive service data matching the home page services
 services = {
@@ -160,10 +144,6 @@ def index():
         return "An error occurred", 500
 
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
     try:
@@ -180,69 +160,30 @@ def submit_form():
             service = request.form.get('service')
             description = request.form.get('description')
 
-            # Log form submission
-            app.logger.info(f"FORM SUBMISSION - Name: {name}, Phone: {phone}, Email: {email}, Service: {service}")
+            # Log form submission (this is what we'll use for now)
+            app.logger.info("📋 FORM SUBMISSION:")
+            app.logger.info(f"   Name: {name}")
+            app.logger.info(f"   Phone: {phone}")
+            app.logger.info(f"   Email: {email}")
+            app.logger.info(f"   Suburb: {suburb}")
+            app.logger.info(f"   Service: {service}")
+            app.logger.info(f"   Description: {description[:100]}..." if description and len(description) > 100 else f"   Description: {description}")
 
-            # Check if we're in production (no email configured)
-            email_configured = app.config.get('MAIL_USERNAME') and app.config.get('MAIL_PASSWORD')
-            
-            if email_configured:
-                # Try to send email (development or properly configured production)
-                try:
-                    # Create message
-                    msg = Message(
-                        subject=f"New Quote Request from {name}",
-                        recipients=['akshaysomu@gmail.com'],
-                        sender=app.config['MAIL_DEFAULT_SENDER']
-                    )
+            # Handle file attachments (log only, don't process)
+            attachments = request.files.getlist('attachments[]')
+            if attachments:
+                app.logger.info(f"   Files uploaded: {len([f for f in attachments if f.filename])}")
+                for file in attachments:
+                    if file and file.filename:
+                        app.logger.info(f"   - {file.filename} ({file.content_type})")
 
-                    # Handle file attachments
-                    attachments = request.files.getlist('attachments[]')
-                    file_names = []
-                    
-                    if not os.path.exists(UPLOAD_FOLDER):
-                        os.makedirs(UPLOAD_FOLDER)
-
-                    for file in attachments:
-                        if file and file.filename and allowed_file(file.filename):
-                            filename = secure_filename(file.filename)
-                            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                            try:
-                                file.save(filepath)
-                                with open(filepath, 'rb') as f:
-                                    msg.attach(filename, file.content_type, f.read())
-                                file_names.append(filename)
-                                os.remove(filepath)  # Clean up the temp file
-                            except Exception as file_error:
-                                app.logger.error(f"File handling error: {str(file_error)}")
-                                if os.path.exists(filepath):
-                                    os.remove(filepath)
-
-                    # Add file names to template context
-                    html_body = render_template('email_template.html',
-                                            name=name, phone=phone, email=email,
-                                            suburb=suburb, service=service,
-                                            description=description,
-                                            attachments=file_names)
-                
-                    msg.html = html_body
-                    
-                    # Send email
-                    mail.send(msg)
-                    app.logger.info("Email sent successfully")
-                    flash("Thank you for your request! We will get back to you shortly.", "success")
-                    
-                except Exception as email_error:
-                    app.logger.error(f"Email sending failed: {str(email_error)}")
-                    # Fall back to logging only
-                    flash("Thank you for your request! We have received your details and will contact you soon.", "success")
-            else:
-                # Production fallback - just log the submission
-                app.logger.info(f"Form logged - Name: {name}, Phone: {phone}, Email: {email}")
-                flash("Thank you for your request! We have received your details and will contact you within 24 hours.", "success")
+            # For production: Just log and respond quickly
+            # TODO: Set up proper email service later (SendGrid, Mailgun, etc.)
+            flash("Thank you for your request! We have received your details and will contact you within 24 hours.", "success")
+            app.logger.info("✅ Form processed successfully - user notified")
 
     except Exception as e:
-        app.logger.error(f"Form submission error: {str(e)}")
+        app.logger.error(f"❌ Form submission error: {str(e)}")
         flash("Thank you for your interest! Please call us directly at 0416 388 777 for immediate assistance.", "info")
 
     return redirect(referring_page)
