@@ -261,6 +261,11 @@ def about():
     return render_template("about.html", about=about_content)
 
 
+@app.route("/test")
+def test():
+    """Simple test endpoint to verify deployment"""
+    return {"status": "OK", "message": "Server is running properly", "timestamp": str(os.environ.get('RENDER_SERVICE_NAME', 'local'))}
+
 @app.route("/portfolio")
 def portfolio():
     portfolio_images = []
