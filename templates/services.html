@@ -5,8 +5,8 @@
         <img src="{{ url_for('static', filename=service.video_url) }}" class="service-video" alt="{{ service.name }} background animation">
         <div class="service-video-overlay"></div>
 
-        <!-- Clickable content -->
-        <a href="{{ url_for('service', service_name=service.url_name) }}" class="service-card-link">
+        <!-- Clickable content with proper navigation -->
+        <a href="{{ url_for('service', service_name=service.url_name) }}" class="service-card-link" data-service="{{ service.url_name }}">
             <div class="service-icon">
                 {% if service.url_name == 'carpet-cleaning' %}
                     <i class="fas fa-wind"></i>

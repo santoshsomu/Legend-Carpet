@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Quote Request</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; }
+        h2 { color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 10px; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 10px; padding: 5px; border-bottom: 1px solid #eee; }
+        strong { color: #0f172a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>New Website Quote Request</h2>
+        <p>You have received a new inquiry with the following details:</p>
+        <ul>
+            <li><strong>Name:</strong> {{ name }}</li>
+            <li><strong>Phone:</strong> {{ phone }}</li>
+            <li><strong>Email:</strong> <a href="mailto:{{ email }}">{{ email }}</a></li>
+            <li><strong>Suburb/Postcode:</strong> {{ suburb or 'Not specified' }}</li>
+            <li><strong>Service Required:</strong> {{ service or 'Not specified' }}</li>
+        </ul>
+        <p><strong>Description of Issue:</strong></p>
+        <p>{{ description or 'No description provided.' }}</p>
+
+        {% if attachments %}
+        <p><strong>Attached Files:</strong></p>
+        <ul>
+            {% for file in attachments %}
+            <li>{{ file }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

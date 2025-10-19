@@ -48,9 +48,11 @@
     --radius-xl: 1rem;
     --radius-2xl: 1.5rem;
 
-    /* Typography */
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Typography - Updated for comprehensive, user-friendly design */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Clean, highly readable body font for all text content */
+    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Modern, professional headings for trust and clarity */
+    --font-hero: 'Luckiest Guy', cursive; /* Playful, attention-grabbing hero title for immediate engagement */
+    --font-accent: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Consistent accent font for buttons, CTAs, and key elements */
 
     /* Transitions */
     --transition-fast: 0.15s ease-out;
@@ -89,29 +91,33 @@ body {
 
 /* ===== TYPOGRAPHY ===== */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading); /* Professional, modern headings for all pages */
     font-weight: 600;
     line-height: 1.2;
     color: var(--primary);
     margin-bottom: var(--space-4);
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
-h3 { font-size: var(--text-2xl); }
-h4 { font-size: var(--text-xl); }
-h5 { font-size: var(--text-lg); }
-h6 { font-size: var(--text-base); }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 600; }
+h3 { font-size: var(--text-2xl); font-weight: 600; }
+h4 { font-size: var(--text-xl); font-weight: 500; }
+h5 { font-size: var(--text-lg); font-weight: 500; }
+h6 { font-size: var(--text-base); font-weight: 500; }
 
 p {
     margin-bottom: var(--space-4);
     color: var(--muted);
+    font-family: var(--font-primary); /* Readable body text for descriptions and content */
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 a {
     color: var(--primary);
     text-decoration: none;
     transition: color var(--transition-fast);
+    font-family: var(--font-primary); /* Consistent link styling */
 }
 
 a:hover {
@@ -232,14 +238,13 @@ a:hover {
 }
 
 .main-nav a {
-    color: var(--text) !important;
-    font-weight: 500;
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-fast);
-    position: relative;
-    opacity: 1;
-    visibility: visible;
+    color: var(--text) !important; /* Default text color */
+    text-decoration: none;
+    display: block;
+}
+
+.main-nav a:visited {
+    color: var(--text) !important; /* Visited link color */
 }
 
 .main-nav a::after {
@@ -259,7 +264,7 @@ a:hover {
 }
 
 .main-nav a:hover {
-    color: var(--primary) !important;
+    color: var(--primary); /* Ensure hover color is visible */
     background-color: var(--surface);
 }
 
@@ -287,7 +292,7 @@ a:hover {
 .header-contact .cta-button {
     opacity: 1 !important;
     visibility: visible !important;
-    color: var(--text) !important;
+    color: var(--text); /* Default text color for header contact links */
 }
 
 .header-contact {
@@ -300,7 +305,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: var(--space-2);
-    color: var(--text);
+    color: var(--text) !important; /* Default phone link color */
     font-weight: 500;
     padding: var(--space-2) var(--space-3);
     border-radius: var(--radius-md);
@@ -309,6 +314,7 @@ a:hover {
 
 .phone-link:hover {
     background-color: var(--surface);
+    color: var(--primary); /* Ensure hover color is visible */
 }
 
 .phone-link i {
@@ -334,7 +340,7 @@ a:hover {
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
-    background-color: var(--text);
+    background-color: var(--text); /* Default color for mobile menu icon */
     transition: var(--transition-fast);
     border-radius: 2px;
 }
@@ -347,7 +353,7 @@ a:hover {
     gap: var(--space-2);
     padding: var(--space-3) var(--space-6);
     background: var(--primary-gradient);
-    color: white !important;
+    color: var(--primary-contrast) !important; /* Ensure text is white for primary buttons */
     border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
@@ -362,6 +368,7 @@ a:hover {
     overflow: hidden;
     min-height: 44px;
     white-space: nowrap;
+    font-family: var(--font-accent); /* Consistent, modern font for CTAs */
 }
 
 .cta-button::before {
@@ -382,7 +389,8 @@ a:hover {
 .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-3);
-    color: var(--primary-contrast);
+    color: var(--primary-contrast) !important; /* Ensure hover color is white */
+    background: var(--primary); /* Solid primary color on hover */
 }
 
 .cta-button:focus {
@@ -392,14 +400,14 @@ a:hover {
 
 .cta-secondary {
     background: transparent;
-    color: var(--primary);
+    color: var(--primary); /* Default text color for secondary buttons */
     border: 2px solid var(--primary);
     box-shadow: var(--shadow-1);
 }
 
 .cta-secondary:hover {
     background: var(--primary);
-    color: var(--primary-contrast);
+    color: var(--primary-contrast) !important; /* Ensure hover color is white */
 }
 
 .form-button-right {
@@ -460,7 +468,7 @@ a:hover {
 
 .hero-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
     gap: var(--space-12);
     align-items: center;
     position: relative;
@@ -474,9 +482,13 @@ a:hover {
 }
 
 .hero-text h1 {
+    font-family: var(--font-hero); /* Playful, standout font for hero title to grab attention */
     color: var(--primary-contrast);
     margin-bottom: var(--space-6);
     animation: fadeInUp 1s ease-out;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 400; /* Luckiest Guy works best at normal weight */
 }
 
 .hero-subtitle {
@@ -484,6 +496,8 @@ a:hover {
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: var(--space-8);
     animation: fadeInUp 1s ease-out 0.2s both;
+    font-family: var(--font-primary); /* Readable subtitle */
+    font-weight: 500;
 }
 
 .hero-features {
@@ -524,6 +538,49 @@ a:hover {
     padding: var(--space-8);
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+/* Hero form - force white text and dark translucent inputs for visibility on hero background */
+.hero-form-container,
+.hero-form-container .quote-form,
+.hero-form-container .quote-form h3,
+.hero-form-container .quote-form label,
+.hero-form-container .quote-form .form-group,
+.hero-form-container .quote-form .checkbox-label,
+.hero-form-container .quote-form .file-upload-label {
+    color: #ffffff;
+}
+
+.hero-form-container .quote-form input,
+.hero-form-container .quote-form select,
+.hero-form-container .quote-form textarea {
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Placeholder color for inputs in hero form */
+.hero-form-container .quote-form input::placeholder,
+.hero-form-container .quote-form textarea::placeholder {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Make file-preview text/icons visible on dark background */
+.hero-form-container .file-preview,
+.hero-form-container .file-upload-label,
+.hero-form-container .file-help-text {
+    color: #ffffff;
+}
+
+/* Ensure error messages contrast on hero */
+.hero-form-container .error-message {
+    color: #ffdddd;
+}
+
+/* Keep button readable (preserve existing button styles but ensure contrast) */
+.hero-form-container .cta-button {
+    /* If primary button uses dark text, force white text on hero form buttons */
+    color: var(--primary-contrast) !important;
 }
 
 .quote-form h3 {
@@ -608,17 +665,135 @@ a:hover {
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .hero-text h1,
-    .hero-subtitle,
-    .hero-features,
-    .hero-cta,
-    .hero-form-container {
-        animation: none;
+/* ===== WHY US SECTION - ENHANCED WITH FULL SECTION FADE ===== */
+#why-us {
+    background: var(--surface);
+    /* Remove the default hidden state - make visible by default */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animation state when observed */
+#why-us.fade-animation {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+}
+
+#why-us.fade-animation.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Enhanced section background animation */
+#why-us::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 30% 70%, rgba(15, 23, 42, 0.03) 0%, transparent 50%);
+    transform: translateZ(0) scale(1);
+    transition: transform 1.5s ease-out;
+    opacity: 0.5;
+}
+
+#why-us.in-view::before {
+    transform: translateZ(0) scale(1.1);
+    opacity: 1;
+}
+
+/* Ensure child elements are visible by default */
+#why-us .why-us-text h2,
+#why-us .why-us-text p,
+#why-us .benefit,
+#why-us .cta-button,
+#why-us .smooth-image {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animation states for child elements */
+#why-us.fade-animation .why-us-text h2,
+#why-us.fade-animation .why-us-text p,
+#why-us.fade-animation .benefit,
+#why-us.fade-animation .cta-button,
+#why-us.fade-animation .smooth-image {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Child element animations when section is in view */
+#why-us.fade-animation.in-view .why-us-text h2.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#why-us.fade-animation.in-view .why-us-text p.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#why-us.fade-animation.in-view .benefit.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+#why-us.fade-animation.in-view .cta-button.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#why-us.fade-animation.in-view .smooth-image.in-view {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Enhanced hover effects that work after animation */
+#why-us .benefit:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.2);
+}
+
+#why-us .benefit:hover i {
+    transform: scale(1.1) rotate(5deg);
+    background: var(--primary);
+    color: var(--primary-contrast);
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS FOR SECTION ANIMATIONS ===== */
+@media (max-width: 768px) {
+    #why-us.fade-animation {
+        transform: translateY(40px) scale(0.98);
     }
     
-    .hero-video-fallback {
-        display: block;
+    #why-us.fade-animation .why-us-text h2,
+    #why-us.fade-animation .why-us-text p,
+    #why-us.fade-animation .benefit,
+    #why-us.fade-animation .cta-button {
+        transform: translateY(20px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #why-us,
+    #why-us .why-us-text h2,
+    #why-us .why-us-text p,
+    #why-us .benefit,
+    #why-us .cta-button,
+    #why-us .smooth-image {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    #why-us::before {
+        display: none;
     }
 }
 
@@ -765,11 +940,15 @@ a:hover {
 .service-card h3 {
     margin-bottom: var(--space-3);
     color: var(--primary-contrast);
+    font-family: var(--font-heading); /* Bold, professional for service names */
+    font-weight: 600;
 }
 
 .service-card p {
-    margin-bottom: var(--space-4);
+    margin-bottom: 0;
     color: var(--primary-contrast);
+    font-family: var(--font-primary); /* Clear descriptions */
+    font-weight: 400;
 }
 
 /* ===== SERVICE CARD ANIMATED BACKGROUND ===== */
@@ -867,7 +1046,2275 @@ a:hover {
     overflow: hidden;
 }
 
-.image-comparison-slider {
+.image-comparison_slider {
+    position: relative;
+    width: 100%;
+    cursor: ew-resize;
+    aspect-ratio: 4 / 3;
+}
+
+.comparison-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.image-after {
+    clip-path: inset(0 0 0 50%);
+}
+
+.comparison-slider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 4px;
+    background-color: var(--primary-contrast);
+    cursor: ew-resize;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.comparison-slider-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-contrast);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-2);
+}
+
+.comparison-slider-handle i {
+    color: var(--primary);
+    font-size: var(--text-xl);
+}
+
+/* Hide old/conflicting slider styles */
+.before-after-section, .ba-slider, .before-img, .after-img, .after-img-container, .slider-handle, .ba-labels, .comparison-image-after {
+    display: none;
+}
+
+.form-group input.is-invalid {
+    border-color: var(--danger);
+}
+
+.quote-form select {
+    color: var(--text);
+}
+
+.map-container {
+    min-height: 400px;
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.testimonial-card {
+    /* Glass effect background */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: 
+        0 8px 32px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    position: relative;
+    /* Enable magnetic effect */
+    transform-style: preserve-3d;
+    cursor: pointer;
+    
+    /* Dark glass overlay for better text contrast */
+    background-image: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.05) 0%, 
+        rgba(15, 23, 42, 0.1) 100%);
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-6);
+    font-size: 4rem;
+    color: rgba(15, 23, 42, 0.15); /* Subtle quote mark */
+    font-family: serif;
+    line-height: 1;
+}
+
+.testimonial-card:hover {
+    /* Enhanced glass effect on hover */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 
+        0 12px 40px rgba(15, 23, 42, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(15, 23, 42, 0.1);
+    z-index: 10;
+    border-color: rgba(255, 255, 255, 0.3);
+    /* Transform will be controlled by JavaScript */
+}
+
+/* Magnetic card content container */
+.testimonial-card-content {
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-fast);
+}
+
+/* Enhanced glow effect during magnetic hover */
+.testimonial-card.magnetic-hover {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 
+        0 15px 45px rgba(15, 23, 42, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 35px rgba(15, 23, 42, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Subtle inner movement for content */
+.testimonial-card.magnetic-hover .testimonial-card-content {
+    transform: translateZ(20px);
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-rating i {
+    color: #fbbf24;
+    transition: transform var(--transition-fast);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Stars glow effect during magnetic hover */
+.testimonial-card.magnetic-hover .testimonial-rating i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: var(--space-4);
+    /* Enhanced text contrast for glass background */
+    color: var(--primary);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-primary);
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author strong {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-author span {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced glass shimmer effect */
+.testimonial-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.8s ease;
+    pointer-events: none;
+}
+
+.testimonial-card:hover::after {
+    left: 100%;
+}
+
+/* Additional glass reflection effect */
+.testimonial-card {
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    z-index: 0; /* Behind content */
+}
+
+/* Ensure content stays above glass effects */
+.testimonial-rating,
+.testimonial-card p,
+.testimonial-author {
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== SERVICES CAROUSEL (enhanced center focus + hint) ===== */
+/* Force override of any existing grid styles */
+#services .services-grid,
+.services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: var(--space-6) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding: 20px !important;
+    padding: var(--space-4) var(--space-8) var(--space-8) !important;
+    -webkit-overflow-scrolling: touch !important;
+    cursor: grab !important;
+    position: relative !important;
+    margin-top: var(--space-12) !important;
+    --drag-direction: translateX(-50%);
+}
+
+/* Services section wrapper for arrow positioning */
+#services {
+    position: relative;
+}
+
+/* Carousel navigation arrows */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 50px;
+    height: 50px;
+    background: var(--bg);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-2);
+    opacity: 0.9;
+}
+
+.carousel-nav:hover {
+    background: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--shadow-3);
+    opacity: 1;
+}
+
+.carousel-nav i {
+    color: var(--primary);
+    font-size: var(--text-xl);
+    transition: color var(--transition-fast);
+}
+
+.carousel-nav:hover i {
+    color: var(--primary-contrast);
+}
+
+.carousel-nav-left {
+    left: var(--space-4);
+}
+
+.carousel-nav-right {
+    right: var(--space-4);
+}
+
+/* Disable arrows when at start/end */
+.carousel-nav.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Hide arrows on very small screens to avoid overlap */
+@media (max-width: 480px) {
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-nav i {
+        font-size: var(--text-lg);
+    }
+    
+    .carousel-nav-left {
+        left: var(--space-2);
+    }
+    
+    .carousel-nav-right {
+        right: var(--space-2);
+    }
+}
+
+/* Animation for arrow appearance */
+@keyframes arrowPulse {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.05);
+    }
+}
+
+.carousel-nav:not(.disabled) {
+    animation: arrowPulse 2s ease-in-out infinite;
+}
+
+.carousel-nav:hover {
+    animation: none;
+}
+
+/* ...existing code... */
+
+/* ===== SERVICES CAROUSEL (enhanced center focus + hint) ===== */
+/* Force override of any existing grid styles */
+#services .services-grid,
+.services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: var(--space-6) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding: 20px !important;
+    padding: var(--space-4) var(--space-8) var(--space-8) !important;
+    -webkit-overflow-scrolling: touch !important;
+    cursor: grab !important;
+    position: relative !important;
+    margin-top: var(--space-12) !important;
+    --drag-direction: translateX(-50%);
+}
+
+/* Services section wrapper for arrow positioning */
+#services {
+    position: relative;
+}
+
+/* Carousel navigation arrows */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 50px;
+    height: 50px;
+    background: var(--bg);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-2);
+    opacity: 0.9;
+}
+
+.carousel-nav:hover {
+    background: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--shadow-3);
+    opacity: 1;
+}
+
+.carousel-nav i {
+    color: var(--primary);
+    font-size: var(--text-xl);
+    transition: color var(--transition-fast);
+}
+
+.carousel-nav:hover i {
+    color: var(--primary-contrast);
+}
+
+.carousel-nav-left {
+    left: var(--space-4);
+}
+
+.carousel-nav-right {
+    right: var(--space-4);
+}
+
+/* Disable arrows when at start/end */
+.carousel-nav.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Hide arrows on very small screens to avoid overlap */
+@media (max-width: 480px) {
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-nav i {
+        font-size: var(--text-lg);
+    }
+    
+    .carousel-nav-left {
+        left: var(--space-2);
+    }
+    
+    .carousel-nav-right {
+        right: var(--space-2);
+    }
+}
+
+/* Animation for arrow appearance */
+@keyframes arrowPulse {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.05);
+    }
+}
+
+.carousel-nav:not(.disabled) {
+    animation: arrowPulse 2s ease-in-out infinite;
+}
+
+.carousel-nav:hover {
+    animation: none;
+}
+
+/* ...existing code... */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 
+        0 12px 40px rgba(15, 23, 42, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(15, 23, 42, 0.1);
+    z-index: 10;
+    border-color: rgba(255, 255, 255, 0.3);
+    /* Transform will be controlled by JavaScript */
+}
+
+/* Magnetic card content container */
+.testimonial-card-content {
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-fast);
+}
+
+/* Enhanced glow effect during magnetic hover */
+.testimonial-card.magnetic-hover {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 
+        0 15px 45px rgba(15, 23, 42, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 35px rgba(15, 23, 42, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Subtle inner movement for content */
+.testimonial-card.magnetic-hover .testimonial-card-content {
+    transform: translateZ(20px);
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-rating i {
+    color: #fbbf24;
+    transition: transform var(--transition-fast);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Stars glow effect during magnetic hover */
+.testimonial-card.magnetic-hover .testimonial-rating i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: var(--space-4);
+    /* Enhanced text contrast for glass background */
+    color: var(--primary);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-primary);
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author strong {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-author span {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced glass shimmer effect */
+.testimonial-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.8s ease;
+    pointer-events: none;
+}
+
+.testimonial-card:hover::after {
+    left: 100%;
+}
+
+/* Additional glass reflection effect */
+.testimonial-card {
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    z-index: 0; /* Behind content */
+}
+
+/* Ensure content stays above glass effects */
+.testimonial-rating,
+.testimonial-card p,
+.testimonial-author {
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== SERVICES CAROUSEL (enhanced center focus + hint) ===== */
+/* Force override of any existing grid styles */
+#services .services-grid,
+.services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: var(--space-6) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding: 20px !important;
+    padding: var(--space-4) var(--space-8) var(--space-8) !important;
+    -webkit-overflow-scrolling: touch !important;
+    cursor: grab !important;
+    position: relative !important;
+    margin-top: var(--space-12) !important;
+    --drag-direction: translateX(-50%);
+}
+
+.services-grid.is-dragging {
+    cursor: grabbing !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.services-grid::-webkit-scrollbar { 
+    display: none !important; 
+}
+.services-grid { 
+    scrollbar-width: none !important; 
+}
+
+/* Left edge fade */
+.services-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(to right, var(--surface) 0%, rgba(248,250,252,0) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Enhanced drag hint with directional animation */
+.services-grid::after {
+    content: '⟵ drag ⟶';
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: var(--drag-direction, translateX(-50%));
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(15,23,42,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-1);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    z-index: 15; /* Higher z-index to stay visible */
+    opacity: 1;
+}
+
+/* Directional animations for drag hint */
+.services-grid.dragging-left::after {
+    content: '⟵ dragging';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+.services-grid.dragging-right::after {
+    content: 'dragging ⟶';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+/* Hide hint after user interaction (but not during drag) */
+.services-grid.user-interacted:not(.is-dragging):not(.dragging-left):not(.dragging-right)::after {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    transition-delay: 2s; /* Delay before hiding */
+}
+
+/* Service cards in carousel - FORCE OVERRIDE ALL EXISTING STYLES */
+#services .service-card,
+.services-grid .service-card,
+.service-card {
+    /* Fixed width for carousel items */
+    flex: 0 0 clamp(280px, 30vw, 350px) !important;
+    scroll-snap-align: center !important;
+    
+    /* Default state: smaller and faded */
+    opacity: 0.4 !important;
+    transform: scale(0.85) !important;
+    transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease !important;
+    will-change: transform !important;
+    
+    /* Preserve existing visual styles but force layout */
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-1) !important;
+    color: white !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 400px !important;
+    padding: var(--space-8) !important;
+    text-align: center !important;
+    background-color: #0f172a !important;
+    cursor: pointer !important;
+}
+
+/* Ensure service card links work properly */
+.service-card .service-card-link {
+    cursor: pointer !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* Center card is highlighted - HIGHEST SPECIFICITY */
+#services .services-grid .service-card.is-center,
+.services-grid .service-card.is-center,
+.service-card.is-center {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    box-shadow: var(--shadow-3) !important;
+    z-index: 3 !important;
+}
+
+/* Hover effect on any card - FORCE OVERRIDE */
+#services .services-grid .service-card:hover,
+.services-grid .service-card:hover,
+.service-card:hover {
+    opacity: 1 !important;
+    transform: scale(1.05) !important;
+    box-shadow: var(--shadow-4) !important;
+    z-index: 4 !important;
+}
+
+/* Hold effect (strongest) - FORCE OVERRIDE */
+#services .services-grid .service-card.is-holding,
+.services-grid .service-card.is-holding,
+.service-card.is-holding {
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+    box-shadow: var(--shadow-4) !important;
+    z-index: 5 !important;
+}
+
+/* Don't disable clicks during light dragging */
+.services-grid.is-dragging .service-card a {
+    pointer-events: auto !important;
+}
+
+/* Only disable clicks during heavy dragging */
+.services-grid.is-dragging.heavy-drag .service-card a {
+    pointer-events: none !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #services .service-card,
+    .services-grid .service-card,
+    .service-card {
+        flex: 0 0 85vw !important;
+    }
+
+    
+    .services-grid::after {
+        font-size: 0.7rem !important;
+        bottom: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #services .service-card,
+    .services-grid .service-card,
+    .service-card {
+        flex: 0 0 90vw !important;
+    }
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.testimonial-card {
+    /* Glass effect background */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: 
+        0 8px 32px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    position: relative;
+    /* Enable magnetic effect */
+    transform-style: preserve-3d;
+    cursor: pointer;
+    
+    /* Dark glass overlay for better text contrast */
+    background-image: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.05) 0%, 
+        rgba(15, 23, 42, 0.1) 100%);
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-6);
+    font-size: 4rem;
+    color: rgba(15, 23, 42, 0.15); /* Subtle quote mark */
+    font-family: serif;
+    line-height: 1;
+}
+
+.testimonial-card:hover {
+    /* Enhanced glass effect on hover */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 
+        0 12px 40px rgba(15, 23, 42, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(15, 23, 42, 0.1);
+    z-index: 10;
+    border-color: rgba(255, 255, 255, 0.3);
+    /* Transform will be controlled by JavaScript */
+}
+
+/* Magnetic card content container */
+.testimonial-card-content {
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-fast);
+}
+
+/* Enhanced glow effect during magnetic hover */
+.testimonial-card.magnetic-hover {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 
+        0 15px 45px rgba(15, 23, 42, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 35px rgba(15, 23, 42, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Subtle inner movement for content */
+.testimonial-card.magnetic-hover .testimonial-card-content {
+    transform: translateZ(20px);
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-rating i {
+    color: #fbbf24;
+    transition: transform var(--transition-fast);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Stars glow effect during magnetic hover */
+.testimonial-card.magnetic-hover .testimonial-rating i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: var(--space-4);
+    /* Enhanced text contrast for glass background */
+    color: var(--primary);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-primary);
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author strong {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-author span {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced glass shimmer effect */
+.testimonial-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.8s ease;
+    pointer-events: none;
+}
+
+.testimonial-card:hover::after {
+    left: 100%;
+}
+
+/* Additional glass reflection effect */
+.testimonial-card {
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    z-index: 0; /* Behind content */
+}
+
+/* Ensure content stays above glass effects */
+.testimonial-rating,
+.testimonial-card p,
+.testimonial-author {
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== SERVICES CAROUSEL (enhanced center focus + hint) ===== */
+/* Force override of any existing grid styles */
+#services .services-grid,
+.services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: var(--space-6) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding: 20px !important;
+    padding: var(--space-4) var(--space-8) var(--space-8) !important;
+    -webkit-overflow-scrolling: touch !important;
+    cursor: grab !important;
+    position: relative !important;
+    margin-top: var(--space-12) !important;
+    --drag-direction: translateX(-50%);
+}
+
+.services-grid.is-dragging {
+    cursor: grabbing !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.services-grid::-webkit-scrollbar { 
+    display: none !important; 
+}
+.services-grid { 
+    scrollbar-width: none !important; 
+}
+
+/* Left edge fade */
+.services-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(to right, var(--surface) 0%, rgba(248,250,252,0) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Enhanced drag hint with directional animation */
+.services-grid::after {
+    content: '⟵ drag ⟶';
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: var(--drag-direction, translateX(-50%));
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(15,23,42,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-1);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    z-index: 15; /* Higher z-index to stay visible */
+    opacity: 1;
+}
+
+/* Directional animations for drag hint */
+.services-grid.dragging-left::after {
+    content: '⟵ dragging';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+.services-grid.dragging-right::after {
+    content: 'dragging ⟶';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+/* Hide hint after user interaction (but not during drag) */
+.services-grid.user-interacted:not(.is-dragging):not(.dragging-left):not(.dragging-right)::after {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    transition-delay: 2s; /* Delay before hiding */
+}
+
+/* Service cards in carousel - FORCE OVERRIDE ALL EXISTING STYLES */
+#services .service-card,
+.services-grid .service-card,
+.service-card {
+    /* Fixed width for carousel items */
+    flex: 0 0 clamp(280px, 30vw, 350px) !important;
+    scroll-snap-align: center !important;
+    
+    /* Default state: smaller and faded */
+    opacity: 0.4 !important;
+    transform: scale(0.85) !important;
+    transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease !important;
+    will-change: transform !important;
+    
+    /* Preserve existing visual styles but force layout */
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-1) !important;
+    color: white !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 400px !important;
+    padding: var(--space-8) !important;
+    text-align: center !important;
+    background-color: #0f172a !important;
+    cursor: pointer !important;
+}
+
+/* Ensure service card links work properly */
+.service-card .service-card-link {
+    cursor: pointer !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* Center card is highlighted - HIGHEST SPECIFICITY */
+#services .services-grid .service-card.is-center,
+.services-grid .service-card.is-center,
+.service-card.is-center {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    box-shadow: var(--shadow-3) !important;
+    z-index: 3 !important;
+}
+
+/* Hover effect on any card - FORCE OVERRIDE */
+#services .services-grid .service-card:hover,
+.services-grid .service-card:hover,
+.service-card:hover {
+    opacity: 1 !important;
+    transform: scale(1.05) !important;
+    box-shadow: var(--shadow-4) !important;
+    z-index: 4 !important;
+}
+
+/* Hold effect (strongest) - FORCE OVERRIDE */
+#services .services-grid .service-card.is-holding,
+.services-grid .service-card.is-holding,
+.service-card.is-holding {
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+    box-shadow: var(--shadow-4) !important;
+    z-index: 5 !important;
+}
+
+/* Don't disable clicks during light dragging */
+.services-grid.is-dragging .service-card a {
+    pointer-events: auto !important;
+}
+
+/* Only disable clicks during heavy dragging */
+.services-grid.is-dragging.heavy-drag .service-card a {
+    pointer-events: none !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #services .service-card,
+    .services-grid .service-card,
+    .service-card {
+        flex: 0 0 85vw !important;
+    }
+
+    
+    .services-grid::after {
+        font-size: 0.7rem !important;
+        bottom: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #services .service-card,
+    .services-grid .service-card,
+    .service-card {
+        flex: 0 0 90vw !important;
+    }
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.testimonial-card {
+    /* Glass effect background */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: 
+        0 8px 32px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    position: relative;
+    /* Enable magnetic effect */
+    transform-style: preserve-3d;
+    cursor: pointer;
+    
+    /* Dark glass overlay for better text contrast */
+    background-image: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.05) 0%, 
+        rgba(15, 23, 42, 0.1) 100%);
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-6);
+    font-size: 4rem;
+    color: rgba(15, 23, 42, 0.15); /* Subtle quote mark */
+    font-family: serif;
+    line-height: 1;
+}
+
+.testimonial-card:hover {
+    /* Enhanced glass effect on hover */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 
+        0 12px 40px rgba(15, 23, 42, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(15, 23, 42, 0.1);
+    z-index: 10;
+    border-color: rgba(255, 255, 255, 0.3);
+    /* Transform will be controlled by JavaScript */
+}
+
+/* Magnetic card content container */
+.testimonial-card-content {
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-fast);
+}
+
+/* Enhanced glow effect during magnetic hover */
+.testimonial-card.magnetic-hover {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 
+        0 15px 45px rgba(15, 23, 42, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 35px rgba(15, 23, 42, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Subtle inner movement for content */
+.testimonial-card.magnetic-hover .testimonial-card-content {
+    transform: translateZ(20px);
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-rating i {
+    color: #fbbf24;
+    transition: transform var(--transition-fast);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Stars glow effect during magnetic hover */
+.testimonial-card.magnetic-hover .testimonial-rating i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: var(--space-4);
+    /* Enhanced text contrast for glass background */
+    color: var(--primary);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-primary);
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author strong {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-author span {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced glass shimmer effect */
+.testimonial-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.8s ease;
+    pointer-events: none;
+}
+
+.testimonial-card:hover::after {
+    left: 100%;
+}
+
+/* Additional glass reflection effect */
+.testimonial-card {
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    z-index: 0; /* Behind content */
+}
+
+/* Ensure content stays above glass effects */
+.testimonial-rating,
+.testimonial-card p,
+.testimonial-author {
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== SERVICES CAROUSEL (enhanced center focus + hint) ===== */
+/* Force override of any existing grid styles */
+#services .services-grid,
+.services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: var(--space-6) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding: 20px !important;
+    padding: var(--space-4) var(--space-8) var(--space-8) !important;
+    -webkit-overflow-scrolling: touch !important;
+    cursor: grab !important;
+    position: relative !important;
+    margin-top: var(--space-12) !important;
+    --drag-direction: translateX(-50%);
+}
+
+.services-grid.is-dragging {
+    cursor: grabbing !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.services-grid::-webkit-scrollbar { 
+    display: none !important; 
+}
+.services-grid { 
+    scrollbar-width: none !important; 
+}
+
+/* Left edge fade */
+.services-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(to right, var(--surface) 0%, rgba(248,250,252,0) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Enhanced drag hint with directional animation */
+.services-grid::after {
+    content: '⟵ drag ⟶';
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: var(--drag-direction, translateX(-50%));
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(15,23,42,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-1);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    z-index: 15; /* Higher z-index to stay visible */
+    opacity: 1;
+}
+
+/* Directional animations for drag hint */
+.services-grid.dragging-left::after {
+    content: '⟵ dragging';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+.services-grid.dragging-right::after {
+    content: 'dragging ⟶';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+/* Hide hint after user interaction (but not during drag) */
+.services-grid.user-interacted:not(.is-dragging):not(.dragging-left):not(.dragging-right)::after {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    transition-delay: 2s; /* Delay before hiding */
+}
+
+/* Service cards in carousel - FORCE OVERRIDE ALL EXISTING STYLES */
+#services .service-card,
+.services-grid .service-card,
+.service-card {
+    /* Fixed width for carousel items */
+    flex: 0 0 clamp(280px, 30vw, 350px) !important;
+    scroll-snap-align: center !important;
+    
+    /* Default state: smaller and faded */
+    opacity: 0.4 !important;
+    transform: scale(0.85) !important;
+    transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease !important;
+    will-change: transform !important;
+    
+    /* Preserve existing visual styles but force layout */
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-1) !important;
+    color: white !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 400px !important;
+    padding: var(--space-8) !important;
+    text-align: center !important;
+    background-color: #0f172a !important;
+    cursor: pointer !important;
+}
+
+/* Ensure service card links work properly */
+.service-card .service-card-link {
+    cursor: pointer !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* Center card is highlighted - HIGHEST SPECIFICITY */
+#services .services-grid .service-card.is-center,
+.services-grid .service-card.is-center,
+.service-card.is-center {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    box-shadow: var(--shadow-3) !important;
+    z-index: 3 !important;
+}
+
+/* Hover effect on any card - FORCE OVERRIDE */
+#services .services-grid .service-card:hover,
+.services-grid .service-card:hover,
+.service-card:hover {
+    opacity: 1 !important;
+    transform: scale(1.05) !important;
+    box-shadow: var(--shadow-4) !important;
+    z-index: 4 !important;
+}
+
+/* Hold effect (strongest) - FORCE OVERRIDE */
+#services .services-grid .service-card.is-holding,
+.services-grid .service-card.is-holding,
+.service-card.is-holding {
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+    box-shadow: var(--shadow-4) !important;
+    z-index: 5 !important;
+}
+
+/* Don't disable clicks during light dragging */
+.services-grid.is-dragging .service-card a {
+    pointer-events: auto !important;
+}
+
+/* Only disable clicks during heavy dragging */
+.services-grid.is-dragging.heavy-drag .service-card a {
+    pointer-events: none !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #services .service-card,
+    .services-grid .service-card,
+    .service-card {
+        flex: 0 0 85vw !important;
+    }
+
+    
+    .services-grid::after {
+        font-size: 0.7rem !important;
+        bottom: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #services .service-card,
+    .services-grid .service-card,
+    .service-card {
+        flex: 0 0 90vw !important;
+    }
+}
+
+/* ===== TESTIMONIALS SECTION ===== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.testimonial-card {
+    /* Glass effect background */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: 
+        0 8px 32px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    position: relative;
+    /* Enable magnetic effect */
+    transform-style: preserve-3d;
+    cursor: pointer;
+    
+    /* Dark glass overlay for better text contrast */
+    background-image: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.05) 0%, 
+        rgba(15, 23, 42, 0.1) 100%);
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-6);
+    font-size: 4rem;
+    color: rgba(15, 23, 42, 0.15); /* Subtle quote mark */
+    font-family: serif;
+    line-height: 1;
+}
+
+.testimonial-card:hover {
+    /* Enhanced glass effect on hover */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 
+        0 12px 40px rgba(15, 23, 42, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 30px rgba(15, 23, 42, 0.1);
+    z-index: 10;
+    border-color: rgba(255, 255, 255, 0.3);
+    /* Transform will be controlled by JavaScript */
+}
+
+/* Magnetic card content container */
+.testimonial-card-content {
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-fast);
+}
+
+/* Enhanced glow effect during magnetic hover */
+.testimonial-card.magnetic-hover {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 
+        0 15px 45px rgba(15, 23, 42, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 35px rgba(15, 23, 42, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Subtle inner movement for content */
+.testimonial-card.magnetic-hover .testimonial-card-content {
+    transform: translateZ(20px);
+}
+
+.testimonial-rating {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-rating i {
+    color: #fbbf24;
+    transition: transform var(--transition-fast);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Stars glow effect during magnetic hover */
+.testimonial-card.magnetic-hover .testimonial-rating i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: var(--space-4);
+    /* Enhanced text contrast for glass background */
+    color: var(--primary);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-primary);
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author strong {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-author span {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced glass shimmer effect */
+.testimonial-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.8s ease;
+    pointer-events: none;
+}
+
+.testimonial-card:hover::after {
+    left: 100%;
+}
+
+/* Additional glass reflection effect */
+.testimonial-card {
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    z-index: 0; /* Behind content */
+}
+
+/* Ensure content stays above glass effects */
+.testimonial-rating,
+.testimonial-card p,
+.testimonial-author {
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== SERVICES CAROUSEL (enhanced center focus + hint) ===== */
+/* Force override of any existing grid styles */
+#services .services-grid,
+.services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: var(--space-6) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding: 20px !important;
+    padding: var(--space-4) var(--space-8) var(--space-8) !important;
+    -webkit-overflow-scrolling: touch !important;
+    cursor: grab !important;
+    position: relative !important;
+    margin-top: var(--space-12) !important;
+    --drag-direction: translateX(-50%);
+}
+
+.services-grid.is-dragging {
+    cursor: grabbing !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.services-grid::-webkit-scrollbar { 
+    display: none !important; 
+}
+.services-grid { 
+    scrollbar-width: none !important; 
+}
+
+/* Left edge fade */
+.services-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(to right, var(--surface) 0%, rgba(248,250,252,0) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Enhanced drag hint with directional animation */
+.services-grid::after {
+    content: '⟵ drag ⟶';
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: var(--drag-direction, translateX(-50%));
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(15,23,42,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-1);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    z-index: 15; /* Higher z-index to stay visible */
+    opacity: 1;
+}
+
+/* Directional animations for drag hint */
+.hero-form-container .quote-form .file-upload-label {
+    color: #ffffff;
+}
+
+.hero-form-container .quote-form input,
+.hero-form-container .quote-form select,
+.hero-form-container .quote-form textarea {
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Placeholder color for inputs in hero form */
+.hero-form-container .quote-form input::placeholder,
+.hero-form-container .quote-form textarea::placeholder {
+    color: rgba(255,255,255,0.8);
+}
+
+/* Make file-preview text/icons visible on dark background */
+.hero-form-container .file-preview,
+.hero-form-container .file-upload-label,
+.hero-form-container .file-help-text {
+    color: #ffffff;
+}
+
+/* Ensure error messages contrast on hero */
+.hero-form-container .error-message {
+    color: #ffdddd;
+}
+
+/* Keep button readable (preserve existing button styles but ensure contrast) */
+.hero-form-container .cta-button {
+    /* If primary button uses dark text, force white text on hero form buttons */
+    color: var(--primary-contrast) !important;
+}
+
+.quote-form h3 {
+    color: var(--primary-contrast);
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+.quote-form form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+    padding: var(--space-3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text);
+    font-size: var(--text-sm);
+    transition: all var(--transition-fast);
+}
+
+.quote-form input::placeholder,
+.quote-form textarea::placeholder {
+    color: var(--muted);
+}
+
+.quote-form input:focus,
+.quote-form select:focus,
+.quote-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+    background: var(--bg);
+}
+
+.quote-form select {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--text);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right var(--space-3) center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+.quote-form select option {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ===== WHY US SECTION - ENHANCED WITH FULL SECTION FADE ===== */
+#why-us {
+    background: var(--surface);
+    /* Remove the default hidden state - make visible by default */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animation state when observed */
+#why-us.fade-animation {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+}
+
+#why-us.fade-animation.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Enhanced section background animation */
+#why-us::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 30% 70%, rgba(15, 23, 42, 0.03) 0%, transparent 50%);
+    transform: translateZ(0) scale(1);
+    transition: transform 1.5s ease-out;
+    opacity: 0.5;
+}
+
+#why-us.in-view::before {
+    transform: translateZ(0) scale(1.1);
+    opacity: 1;
+}
+
+/* Ensure child elements are visible by default */
+#why-us .why-us-text h2,
+#why-us .why-us-text p,
+#why-us .benefit,
+#why-us .cta-button,
+#why-us .smooth-image {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animation states for child elements */
+#why-us.fade-animation .why-us-text h2,
+#why-us.fade-animation .why-us-text p,
+#why-us.fade-animation .benefit,
+#why-us.fade-animation .cta-button,
+#why-us.fade-animation .smooth-image {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Child element animations when section is in view */
+#why-us.fade-animation.in-view .why-us-text h2.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#why-us.fade-animation.in-view .why-us-text p.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#why-us.fade-animation.in-view .benefit.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+#why-us.fade-animation.in-view .cta-button.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#why-us.fade-animation.in-view .smooth-image.in-view {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Enhanced hover effects that work after animation */
+#why-us .benefit:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.2);
+}
+
+#why-us .benefit:hover i {
+    transform: scale(1.1) rotate(5deg);
+    background: var(--primary);
+    color: var(--primary-contrast);
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS FOR SECTION ANIMATIONS ===== */
+@media (max-width: 768px) {
+    #why-us.fade-animation {
+        transform: translateY(40px) scale(0.98);
+    }
+    
+    #why-us.fade-animation .why-us-text h2,
+    #why-us.fade-animation .why-us-text p,
+    #why-us.fade-animation .benefit,
+    #why-us.fade-animation .cta-button {
+        transform: translateY(20px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #why-us,
+    #why-us .why-us-text h2,
+    #why-us .why-us-text p,
+    #why-us .benefit,
+    #why-us .cta-button,
+    #why-us .smooth-image {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    #why-us::before {
+        display: none;
+    }
+}
+
+/* ===== TRUST BADGES ===== */
+#trust-badges {
+    background: var(--surface);
+    padding: var(--space-8) 0;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    align-items: center;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-6);
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-1);
+    transition: all var(--transition-normal);
+    min-height: 60px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2);
+}
+
+.badge i {
+    color: var(--primary);
+    font-size: var(--text-xl);
+    flex-shrink: 0;
+}
+
+.badge span {
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.2;
+    font-size: var(--text-sm);
+}
+
+.google-review-badge {
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.google-review-badge .stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: var(--text-sm);
+}
+
+.google-review-badge .stars i {
+    color: #fbbc05;
+    font-size: var(--text-base);
+}
+
+.google-review-badge img {
+    height: 20px;
+    margin-right: 8px;
+}
+
+/* ===== SERVICES SECTION ===== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+.service-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2);
+    transition: all var(--transition-normal);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    padding: var(--space-8);
+    text-align: center;
+    background-color: #0f172a; /* Fallback color */
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-3);
+}
+
+.service-card-link {
+    position: relative;
+    z-index: 3; /* Highest z-index */
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-6);
+    transition: all var(--transition-normal);
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.service-icon i {
+    color: var(--primary-contrast);
+    font-size: 2.5rem;
+}
+
+.service-card h3 {
+    margin-bottom: var(--space-3);
+    color: var(--primary-contrast);
+    font-family: var(--font-heading); /* Bold, professional for service names */
+    font-weight: 600;
+}
+
+.service-card p {
+    margin-bottom: 0;
+    color: var(--primary-contrast);
+    font-family: var(--font-primary); /* Clear descriptions */
+    font-weight: 400;
+}
+
+/* ===== SERVICE CARD ANIMATED BACKGROUND ===== */
+.service-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Behind overlay and content */
+}
+
+.service-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    transition: background-color var(--transition-normal);
+    z-index: 2; /* Above video, behind content */
+}
+
+.service-card:hover .service-video-overlay {
+    background-color: rgba(15, 23, 42, 0.75);
+}
+
+/* ===== WHY US SECTION ===== */
+#why-us {
+    background: var(--surface);
+}
+
+.why-us-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.benefits-grid {
+    display: grid;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-1);
+    transition: all var(--transition-fast);
+}
+
+.benefit:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2);
+}
+
+.benefit i {
+    color: var(--primary);
+    font-size: var(--text-xl);
+    margin-top: 2px;
+    background: var(--surface);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+}
+
+.benefit h4 {
+    margin-bottom: var(--space-2);
+    color: var(--primary);
+}
+
+.benefit p {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+/* ===== BEFORE/AFTER SLIDER (PORTFOLIO) - REVISED ===== */
+.portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-10) var(--space-4);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-8);
+}
+
+.before-after-pair {
+    box-shadow: var(--shadow-3);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.image-comparison_slider {
     position: relative;
     width: 100%;
     cursor: ew-resize;
@@ -954,6 +3401,9 @@ a:hover {
     border: 1px solid rgba(15, 23, 42, 0.1);
     transition: all var(--transition-normal);
     position: relative;
+    /* Enable magnetic effect */
+    transform-style: preserve-3d;
+    cursor: pointer;
 }
 
 .testimonial-card::before {
@@ -968,8 +3418,30 @@ a:hover {
 }
 
 .testimonial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-3);
+    /* Enhanced hover effect with magnetic movement */
+    box-shadow: var(--shadow-4);
+    z-index: 10;
+    /* Transform will be controlled by JavaScript */
+}
+
+/* Magnetic card content container */
+.testimonial-card-content {
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-fast);
+}
+
+/* Enhanced glow effect during magnetic hover */
+.testimonial-card.magnetic-hover {
+    box-shadow: 
+        var(--shadow-4),
+        0 0 30px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle inner movement for content */
+.testimonial-card.magnetic-hover .testimonial-card-content {
+    transform: translateZ(20px);
 }
 
 .testimonial-rating {
@@ -982,6 +3454,13 @@ a:hover {
 
 .testimonial-rating i {
     color: #fbbf24;
+    transition: transform var(--transition-fast);
+}
+
+/* Stars glow effect during magnetic hover */
+.testimonial-card.magnetic-hover .testimonial-rating i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.5));
 }
 
 .testimonial-card p {
@@ -990,6 +3469,8 @@ a:hover {
     color: var(--text);
     position: relative;
     z-index: 1;
+    font-family: var(--font-primary); /* Readable testimonial text */
+    font-weight: 400;
 }
 
 .testimonial-author {
@@ -1003,11 +3484,126 @@ a:hover {
 .testimonial-author strong {
     color: var(--primary);
     font-weight: 600;
+    font-family: var(--font-heading); /* Professional author names */
 }
 
 .testimonial-author span {
     color: var(--muted);
     font-size: var(--text-sm);
+    font-family: var(--font-primary); /* Subtle location text */
+    font-weight: 400;
+}
+
+/* ===== SERVICES CAROUSEL (enhanced center focus + hint) ===== */
+/* Force override of any existing grid styles */
+#services .services-grid,
+.services-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: var(--space-6) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding: 20px !important;
+    padding: var(--space-4) var(--space-8) var(--space-8) !important;
+    -webkit-overflow-scrolling: touch !important;
+    cursor: grab !important;
+    position: relative !important;
+    margin-top: var(--space-12) !important;
+    --drag-direction: translateX(-50%);
+}
+
+.services-grid.is-dragging {
+    cursor: grabbing !important;
+}
+
+/* Hide scrollbar but keep functionality */
+.services-grid::-webkit-scrollbar { 
+    display: none !important; 
+}
+.services-grid { 
+    scrollbar-width: none !important; 
+}
+
+/* Left edge fade */
+.services-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(to right, var(--surface) 0%, rgba(248,250,252,0) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Enhanced drag hint with directional animation */
+.services-grid::after {
+    content: '⟵ drag ⟶';
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: var(--drag-direction, translateX(-50%));
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(15,23,42,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-1);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    z-index: 15; /* Higher z-index to stay visible */
+    opacity: 1;
+}
+
+/* Directional animations for drag hint */
+.services-grid.dragging-left::after {
+    content: '⟵ dragging';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+.services-grid.dragging-right::after {
+    content: 'dragging ⟶';
+    transform: var(--drag-direction) scale(1.1);
+    color: var(--primary);
+    background: rgba(15,23,42,0.1);
+}
+
+/* Hide hint after user interaction (but not during drag) */
+.services-grid.user-interacted:not(.is-dragging):not(.dragging-left):not(.dragging-right)::after {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    transition-delay: 2s; /* Delay before hiding */
+}
+    z-index: 1;
+    font-family: var(--font-primary); /* Readable testimonial text */
+    font-weight: 400;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author strong {
+    color: var(--primary);
+    font-weight: 600;
+    font-family: var(--font-heading); /* Professional author names */
+}
+
+.testimonial-author span {
+    color: var(--muted);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary); /* Subtle location text */
+    font-weight: 400;
 }
 
 /* ===== SERVICE AREAS SECTION ===== */
@@ -1209,6 +3805,7 @@ a:hover {
     font-weight: 500;
     color: var(--text);
     font-size: var(--text-sm);
+    font-family: var(--font-primary); /* Clear form labels */
 }
 
 .form-group input,
@@ -1223,6 +3820,8 @@ a:hover {
     background-color: var(--bg);
     color: var(--text);
     box-shadow: var(--shadow-1);
+    font-family: var(--font-primary); /* Readable form inputs */
+    font-weight: 400;
 }
 
 .form-group input:focus,
@@ -1239,20 +3838,34 @@ a:hover {
     border-color: var(--danger);
 }
 
-.form-group select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right var(--space-3) center;
-    background-repeat: no-repeat;
-    background-size: 1.5em 1.5em;
-    padding-right: 2.5rem;
+/* Replace red invalid borders with white for better contrast on dark/hero backgrounds */
+.form-group input.is-invalid,
+.form-group textarea.is-invalid,
+.form-group input:invalid,
+.form-group textarea:invalid {
+	/* white border instead of red */
+	border-color: rgba(255,255,255,0.9) !important;
+	/* subtle white glow to indicate focus/error without red */
+	box-shadow: 0 0 0 3px rgba(255,255,255,0.06) !important;
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: var(--muted);
-    opacity: 0.7;
+/* When the user has entered text in the description textarea, render its text in black.
+   Targets the main contact textarea and any hero/header textarea ids used on pages.
+   Uses :not(:placeholder-shown) so placeholder still shows in lighter color. */
+textarea#contact-description:not(:placeholder-shown),
+textarea#hero-description:not(:placeholder-shown),
+textarea#header-description:not(:placeholder-shown),
+.form-group textarea[name="description"]:not(:placeholder-shown) {
+	color: #000 !important;
+}
+
+/* Adjust placeholder color for these description fields so it remains readable before typing.
+   Keep placeholders slightly muted to indicate they are prompts. */
+textarea#contact-description::placeholder,
+textarea#hero-description::placeholder,
+textarea#header-description::placeholder,
+.form-group textarea[name="description"]::placeholder {
+	color: rgba(255,255,255,0.7); /* hero fields will inherit white placeholder; contact may override if needed */
 }
 
 /* ===== FLOATING ACTION BUTTON ===== */
@@ -1278,6 +3891,188 @@ a:hover {
 .floating-call-btn:hover {
     transform: scale(1.1);
     animation-play-state: paused;
+}
+
+/* ===== CONFETTI ANIMATION FOR TESTIMONIALS ===== */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 15;
+    border-radius: var(--radius-xl);
+}
+
+.confetti-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: confetti-fall 2s ease-out forwards;
+}
+
+.confetti-particle.square {
+    border-radius: 0;
+    width: 6px;
+    height: 6px;
+}
+
+.confetti-particle.triangle {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 8px solid currentColor;
+    border-radius: 0;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(400px) rotate(var(--rotation-end, 360deg)) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* ===== TESTIMONIAL SPOTLIGHT EFFECT ===== */
+.testimonials-grid {
+    transition: all 0.4s ease-out;
+}
+
+/* When any card is hovered, remove grid-level dimming */
+.testimonials-grid.spotlight-mode {
+    /* Remove grid-level filter - we'll apply dimming to individual cards instead */
+}
+
+/* Individual card spotlight states */
+.testimonial-card {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, filter, box-shadow;
+}
+
+/* Highlighted (spotlighted) card - Bright White Background with highest specificity */
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active,
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active:hover,
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active.magnetic-hover {
+    filter: none !important;
+    transform: scale(1.08) translateZ(30px) !important;
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.15),
+        0 0 40px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    z-index: 100 !important;
+    position: relative;
+    
+    /* Bright solid white background - same brightness as default state */
+    background: #ffffff !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 2px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Simple quote mark for spotlighted card */
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active::before {
+    content: '"' !important;
+    position: absolute !important;
+    top: var(--space-4) !important;
+    left: var(--space-6) !important;
+    font-size: 4rem !important;
+    color: rgba(0, 0, 0, 0.1) !important;
+    font-family: serif !important;
+    line-height: 1 !important;
+    z-index: 1 !important;
+    text-shadow: none !important;
+    animation: none !important;
+    background: none !important;
+    border-radius: 0 !important;
+}
+
+/* Simple subtle glow around spotlighted card */
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -15px !important;
+    left: -15px !important;
+    right: -15px !important;
+    bottom: -15px !important;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.05) 0%,
+        transparent 70%
+    ) !important;
+    border-radius: var(--radius-2xl) !important;
+    z-index: -1 !important;
+    animation: none !important;
+}
+
+@keyframes vibrantQuoteGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 20px rgba(59, 130, 246, 0.5),
+            0 0 40px rgba(16, 185, 129, 0.3),
+            0 0 60px rgba(251, 191, 36, 0.2);
+        color: rgba(59, 130, 246, 0.4);
+    }
+    33% {
+        text-shadow: 
+            0 0 25px rgba(16, 185, 129, 0.6),
+            0 0 50px rgba(251, 191, 36, 0.4),
+            0 0 75px rgba(59, 130, 246, 0.3);
+        color: rgba(16, 185, 129, 0.5);
+    }
+    66% {
+        text-shadow: 
+            0 0 30px rgba(251, 191, 36, 0.7),
+            0 0 60px rgba(59, 130, 246, 0.4),
+            0 0 90px rgba(16, 185, 129, 0.3);
+        color: rgba(251, 191, 36, 0.5);
+    }
+}
+
+/* Clean black text for content in spotlighted card */
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active .testimonial-rating i {
+    transform: scale(1.1);
+    filter: none;
+    color: #fbbf24;
+    text-shadow: none;
+}
+
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active p {
+    text-shadow: none;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active .testimonial-author strong {
+    text-shadow: none;
+    color: var(--text);
+}
+
+.testimonials-grid.spotlight-mode .testimonial-card.spotlight-active .testimonial-author span {
+    text-shadow: none;
+    color: var(--muted);
+}
+
+/* Gentle transitions for non-active cards - apply dimming here instead of grid level */
+.testimonials-grid.spotlight-mode .testimonial-card:not(.spotlight-active) {
+    filter: brightness(0.6) contrast(0.85) saturate(0.7) !important;
+    transform: scale(0.98);
+}
+
+/* Disable original shimmer effect during spotlight */
+.testimonials-grid.spotlight-mode .testimonial-card:not(.spotlight-active)::after {
+    display: none;
 }
 
 /* ===== FOOTER ===== */
@@ -1306,11 +4101,15 @@ a:hover {
 .footer-section h4 {
     color: var(--primary-contrast);
     margin-bottom: var(--space-4);
+    font-family: var(--font-heading); /* Professional footer headings */
+    font-weight: 600;
 }
 
 .footer-section p {
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: var(--space-4);
+    font-family: var(--font-primary); /* Readable footer text */
+    font-weight: 400;
 }
 
 .footer-section ul {
@@ -1324,6 +4123,8 @@ a:hover {
 .footer-section ul li a {
     color: rgba(255, 255, 255, 0.8);
     transition: var(--transition-fast);
+    font-family: var(--font-primary); /* Consistent link styling */
+    font-weight: 400;
 }
 
 .footer-section ul li a:hover {
@@ -1363,6 +4164,10 @@ a:hover {
     width: 16px;
 }
 
+.contact-info-footer a {
+    color: var(--primary-contrast); /* Ensure contact links are visible */
+}
+
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: var(--space-8);
@@ -1372,6 +4177,10 @@ a:hover {
 .footer-bottom p {
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 0;
+}
+
+.footer-bottom p a {
+    color: var(--primary-contrast); /* Ensure footer policy links are visible */
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -1521,9 +4330,12 @@ a:hover {
 /* ===== PORTFOLIO PAGE ===== */
 /* Hide old portfolio styles */
 .portfolio-grid,
-.portfolio-item,
-.image-comparison-slider img { /* Hide old rule that was hiding new images */
-    /* display: none; */
+.portfolio-item {
+    /* These were previously set to display: none; but are now managed by other styles or JavaScript */
+}
+
+.image-comparison-slider img {
+    /* This was previously set to display: none; but is now managed by other styles or JavaScript */
 }
 
 .comparison-image { /* Explicitly show the new images */
@@ -1554,6 +4366,8 @@ a:hover {
 
 .service-hero h1 {
     color: var(--primary-contrast);
+    font-family: var(--font-heading); /* Consistent with other headings */
+    font-weight: 700;
 }
 
 .service-hero p {
@@ -1561,8 +4375,11 @@ a:hover {
     font-size: var(--text-lg);
     max-width: 700px;
     margin: 0 auto var(--space-8);
+    font-family: var(--font-primary); /* Readable service descriptions */
+    font-weight: 500;
 }
 
+/* ===== PROCESS STEPS (SERVICE PAGES) ===== */
 .process-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1589,6 +4406,7 @@ a:hover {
     box-shadow: var(--shadow-2);
 }
 
+/* ===== FAQ (SERVICE PAGES) ===== */
 .faq-item {
     background: var(--surface);
     border-radius: var(--radius-lg);
@@ -1680,19 +4498,40 @@ To modify animations:
 2. Use transform/opacity for performance
 3. Keep durations under 0.5s for UI feedback
 */
-/* ===
-== PORTFOLIO INTEGRATION STYLES ===== */
 
-/* Ensure portfolio page has proper spacing from header */
-body.portfolio-page {
-    padding-top: 80px;
+/* ===== ALERTS / FLASH MESSAGES ===== */
+.alert {
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    font-weight: 500;
+    box-shadow: var(--shadow-2);
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
 }
 
-/* Enhanced portfolio container for better alignment */
-.portfolio-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 var(--space-4);
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Improved grid responsiveness */
@@ -1706,6 +4545,22 @@ body.portfolio-page {
     .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/* Card styling for portfolio items */
+.portfolio-card {
+    background: var(--bg);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-2);
+    transition: all var(--transition-normal);
+}
+
+#portfolio-gallery .portfolio-item .portfolio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-3);
+    border: none !important; /* Overrides conflicting border styles on hover */
 }
 
 /* Enhanced focus states for accessibility */
@@ -1782,7 +4637,9 @@ body.portfolio-page {
         clip-path: none;
         opacity: 0.5;
     }
-}/* ====
+}
+
+/* ====
 = HEADER VISIBILITY FIXES ===== */
 /* Force header elements to be visible on all pages */
 #main-header {
@@ -1809,41 +4666,49 @@ body.portfolio-page {
 
 /* Ensure proper contrast for navigation links */
 .main-nav a {
-    color: black !important;
+    color: var(--text) !important; /* Default text color */
     text-decoration: none;
     display: block;
 }
 
 .main-nav a:visited {
-    color: black !important;
+    color: var(--text) !important; /* Visited link color */
 }
 
 .phone-link {
-    color: black !important;
+    color: var(--text) !important; /* Default phone link color */
 }
 
 .phone-link span {
-    color: black !important;
+    color: var(--text) !important; /* Default phone link span color */
 }
 
 /* Fix for service pages specifically */
 body .main-nav a {
-    color: black !important;
+    color: var(--text) !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 body .header-contact a {
-    color: black !important;
+    color: var(--text) !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
-/* Ensure header CTA button is visible */
+/* Ensure header CTA button is visible and consistent */
 .header-cta {
     opacity: 1 !important;
     visibility: visible !important;
-    color: white !important;
+    color: var(--primary) !important; /* Dark text for contrast */
+    background: var(--primary-contrast) !important; /* White background */
+    border: 2px solid var(--primary) !important; /* Add a border */
+}
+
+.header-cta:hover {
+    color: var(--primary-contrast) !important; /* White text on hover */
+    background: var(--primary) !important; /* Solid primary color on hover */
+    border-color: var(--primary) !important;
 }
 
 /* Mobile menu visibility */
@@ -1853,7 +4718,7 @@ body .header-contact a {
 }
 
 .mobile-menu-toggle span {
-    background-color: black !important;
+    background-color: var(--text) !important; /* Ensure mobile menu icon is visible */
     opacity: 1 !important;
     visibility: visible !important;
 }
@@ -1900,7 +4765,7 @@ body .header-contact a {
     border: none;
     font-size: 1rem;
     font-weight: 500;
-    color: #555;
+    color: var(--muted); /* Default tab link color */
     transition: all 0.3s ease;
     border-bottom: 2px solid transparent;
     margin-bottom: -2px;
@@ -1908,8 +4773,8 @@ body .header-contact a {
 
 .tab-link.active,
 .tab-link:hover {
-    color: #007bff;
-    border-bottom-color: #007bff;
+    color: var(--primary); /* Active/hover tab link color */
+    border-bottom-color: var(--primary);
 }
 
 .tab-content {
@@ -1919,4 +4784,429 @@ body .header-contact a {
 .tab-content.active {
     display: block;
     animation: fadeIn 0.5s;
+}
+
+/* Portfolio filter buttons styling */
+.filter-btn {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-1);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    color: var(--primary-contrast);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+}
+
+/* Enhanced Form Styles */
+.checkbox-group {
+    margin-bottom: var(--space-4);
+}
+
+.checkbox-options {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+}
+
+.checkbox-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.file-upload-container {
+    border: 2px dashed var(--muted);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    text-align: center;
+    cursor: pointer;
+    transition: border-color var(--transition-normal);
+    background: transparent !important;
+}
+
+.file-upload-container:hover {
+    border-color: var(--primary);
+    background: transparent !important;
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+}
+
+/* File upload: keep label color unchanged on hover/focus/active.
+   This ensures "Drop files here or click to upload" retains its color
+   (hero form remains white, footer uses its current color) and does not
+   switch to white on hover. */
+.file-upload-container .file-upload-label,
+.file-upload-container .file-upload-label * {
+    color: inherit !important;
+}
+
+/* Prevent hover/focus/active from changing label color */
+.file-upload-container:hover .file-upload-label,
+.file-upload-container:focus .file-upload-label,
+.file-upload-container:active .file-upload-label,
+.file-upload-container:hover .file-upload-label *,
+.file-upload-container:focus .file-upload-label *,
+.file-upload-container:active .file-upload-label * {
+    color: inherit !important;
+    /* avoid transitions that would animate color changes */
+    transition: none !important;
+}
+
+.file-upload-label i {
+    font-size: var(--text-2xl);
+    color: var(--primary);
+}
+
+.file-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.file-preview-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+/* Enhanced File Upload Feedback */
+.file-preview-item {
+    background: transparent;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+    width: 100%;
+}
+
+.file-success,
+.file-error {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    border-radius: var(--radius-sm);
+}
+
+/* Hero form specific file feedback */
+.hero-form-container .file-success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #ffffff;
+}
+
+.hero-form-container .file-error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ffffff;
+}
+
+/* Contact form specific file feedback */
+.contact-form-container .file-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.contact-form-container .file-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+.file-preview-item .remove-file:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure feedback is visible on hero form */
+.hero-form-container .file-success {
+    color: #ffffff;
+    background: rgba(16, 185, 129, 0.3);
+}
+
+.hero-form-container .file-error {
+    color: #ffffff;
+    background: rgba(239, 68, 68, 0.3);
+}
+
+/* File upload status line */
+.file-upload-status {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: var(--muted);
+}
+
+/* Ensure file-preview items are readable and spaced */
+.file-preview .file-success,
+.file-preview .file-error {
+    align-items: center;
+    gap: var(--space-3);
+    display: flex;
+    justify-content: flex-start;
+}
+.file-preview .file-success img {
+    border-radius: 6px;
+    margin-right: var(--space-2);
+}
+
+/* Prevent file-upload container from changing background on hover anywhere */
+.file-upload-container,
+.file-upload-container:hover,
+.file-upload-container:focus,
+.file-upload-container:active {
+    background: transparent !important;
+}
+
+/* More specific: hero and contact containers should never get a hover background */
+.hero-form-container .file-upload-container,
+.hero-form-container .file-upload-container:hover,
+.contact-form-container .file-upload-container,
+.contact-form-container .file-upload-container:hover {
+    background: transparent !important;
+    border-color: var(--muted) !important;
+}
+
+/* Force footer/contact form inputs to have visible black borders site-wide
+   This targets the standardized contact/footer form container class used across pages */
+.contact-form-container .form-group input,
+.contact-form-container .form-group select,
+.contact-form-container .form-group textarea,
+#main-footer .contact-form-container .form-group input,
+#main-footer .contact-form-container .form-group select,
+#main-footer .contact-form-container .form-group textarea,
+#footer .form-group input,
+#footer .form-group select,
+#footer .form-group textarea,
+#footer input,
+#footer select,
+#footer textarea {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000 !important;
+}
+
+/* If the footer/contact form appears in the base templates, ensure placeholders remain muted */
+.contact-form-container .form-group input::placeholder,
+.contact-form-container .form-group textarea::placeholder,
+#main-footer .form-group input::placeholder,
+#main-footer .form-group textarea::placeholder,
+#footer input::placeholder,
+#footer textarea::placeholder {
+    color: var(--muted) !important;
+}
+
+/* Ensure hero file-success and file-error remain readable */
+.hero-form-container .file-success {
+    background: rgba(16,185,129,0.18);
+    color: #fff;
+}
+.hero-form-container .file-error {
+    background: rgba(239,68,68,0.18);
+    color: #fff;
+}
+
+/* ===== PARALLAX EFFECT OVERRIDES ===== */
+#why-us.parallax-active {
+    transition: none !important;
+    z-index: 15 !important;
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+#services {
+    position: relative;
+    z-index: 5;
+}
+
+/* Force parallax positioning - Simplified for clarity */
+#why-us {
+    will-change: transform, box-shadow;
+}
+
+#services {
+    will-change: opacity;
+}
+
+/* Clean parallax styles - no complex effects */
+#why-us.parallax-debug {
+    transition: none !important;
+}
+
+/* Ensure clean transitions */
+#why-us.parallax-debug,
+#why-us.parallax-debug.fade-animation,
+#why-us.parallax-debug.fade-animation.in-view {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Clean transition states */
+#why-us.parallax-clean {
+    transition: all 0.3s ease !important;
+}
+
+#services.parallax-clean {
+    transition: opacity 0.3s ease !important;
+}
+
+/* ===== PAGE TRANSITION EFFECTS ===== */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.page-transition-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-transition-content {
+    text-align: center;
+    color: white;
+}
+
+.page-transition-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.page-transition-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Smooth page fade-in effect */
+body.page-loading {
+    overflow: hidden;
+}
+
+body.page-fade-in {
+    animation: pagefadeIn 0.6s ease-out;
+}
+
+@keyframes pagefadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== SERVICE CARD SIZE ENHANCEMENTS (50% BIGGER) ===== */
+.services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(525px, 1fr)) !important; /* Increased from 350px */
+    gap: var(--space-12) !important; /* Increased gap */
+}
+
+.service-card {
+    min-height: 600px !important; /* Increased from 400px */
+    padding: calc(var(--space-8) * 1.5) !important; /* Increased padding by 50% */
+}
+
+.service-icon {
+    width: 120px !important; /* Increased from 80px */
+    height: 120px !important; /* Increased from 80px */
+    margin-bottom: calc(var(--space-6) * 1.5) !important; /* Increased margin */
+}
+
+.service-icon i {
+    font-size: 3.75rem !important; /* Increased from 2.5rem (50% bigger) */
+}
+
+.service-card h3 {
+    font-size: calc(var(--text-2xl) * 1.3) !important; /* Increased heading size */
+    margin-bottom: calc(var(--space-3) * 1.5) !important; /* Increased margin */
+}
+
+.service-card p {
+    font-size: calc(var(--text-lg) * 1.2) !important; /* Increased text size */
+    line-height: 1.6 !important;
+}
+
+/* Update carousel cards too */
+#services .service-card,
+.services-grid .service-card {
+    flex: 0 0 clamp(420px, 45vw, 525px) !important; /* Increased carousel width */
+    min-height: 600px !important; /* Increased height */
+    padding: calc(var(--space-8) * 1.5) !important; /* Increased padding */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important; /* Smaller on mobile */
+        gap: var(--space-8) !important;
+    }
+    
+    .service-card {
+        min-height: 500px !important; /* Smaller on mobile */
+        padding: var(--space-8) !important;
+    }
+    
+    .service-icon {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .service-icon i {
+        font-size: 3rem !important;
+    }
+    
+    #services .service-card,
+    .services-grid .service-card {
+        flex: 0 0 clamp(300px, 90vw, 400px) !important;
+        min-height: 500px !important;
+    }
 }

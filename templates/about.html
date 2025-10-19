@@ -9,11 +9,17 @@
       move them to your main CSS file (e.g., static/css/style.css).
     */
     .hero-about {
-        background: linear-gradient(rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.7)), url("{{ url_for('static', filename='images/carpet-texture-bg.jpg') }}");
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.65) 100%), url("{{ url_for('static', filename='images/carpet-texture-bg.jpg') }}");
         background-size: cover;
         background-position: center;
-        padding: 6rem 0;
-        color: white;
+        padding: 14rem 0 8rem;
+        color: var(--primary-contrast);
+    }
+    .hero-about h1 {
+        color: var(--primary-contrast);
+    }
+    .hero-about .lead {
+        color: var(--primary-contrast);
     }
     .section-title {
         font-weight: 700;
@@ -29,11 +35,11 @@
         display: block;
         width: 50px;
         height: 3px;
-        background: var(--bs-primary); /* Use Bootstrap primary color */
+        background: #000; /* Use black for underline */
         bottom: 0;
         left: 0;
     }
-    .text-center .section-title::after {
+    .section-title.text-center::after {
         left: 50%;
         transform: translateX(-50%);
     }
@@ -41,18 +47,19 @@
     /* Mission Section Styling */
     #mission {
         background-color: #f8f9fa; /* A slightly different light gray */
-        border-left: 5px solid var(--bs-primary);
+        padding: var(--space-10);
+        border-radius: var(--radius-lg);
     }
 
     /* Why Choose Us Section Styling */
     .why-choose-us .card {
         border: 1px solid #e9ecef; /* Lighter border */
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: var(--radius-lg);
     }
     .why-choose-us .card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 1rem 3rem rgba(0,0,0,.12)!important;
-        border-color: var(--bs-primary);
+        box-shadow: var(--shadow-3);
     }
     .why-choose-us .icon-circle {
         width: 60px;
@@ -62,12 +69,12 @@
         align-items: center;
         justify-content: center;
         font-size: 1.75rem;
-        background-color: rgba(var(--bs-primary-rgb), 0.1); /* Lighter primary bg */
-        color: var(--bs-primary);
+        background-color: rgba(15, 23, 42, 0.1); /* Lighter primary bg */
+        color: var(--primary);
         transition: background-color 0.3s ease, color 0.3s ease;
     }
     .why-choose-us .card:hover .icon-circle {
-        background-color: var(--bs-primary);
+        background-color: var(--primary);
         color: white;
     }
 
@@ -86,53 +93,22 @@
     </div>
 </section>
 
-<main class="py-5">
+<main>
     <div class="container">
         <!-- Introduction Section with Carousel -->
-        <section id="introduction" class="py-5">
+        <section id="introduction" class="section-padding">
             <div class="row align-items-center g-5">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <h2 class="section-title">Melbourne's Leading Carpet Experts</h2>
                     {% for p in about.paragraphs %}
                         <p class="fs-5 mb-3">{{ p }}</p>
                     {% endfor %}
                 </div>
-                <div class="col-lg-6">
-                    <div id="aboutCarousel" class="carousel slide shadow-lg rounded overflow-hidden" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#aboutCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{ url_for('static', filename='images/team-working.jpg') }}" class="d-block w-100" alt="Legend Carpet Services team at work">
-                            </div>
-                            <div class="carousel-item">
-                                <!-- Suggestion: Add more relevant images -->
-                                <img src="{{ url_for('static', filename='images/carpet-cleaning-action.jpg') }}" class="d-block w-100" alt="Professional carpet steam cleaning">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ url_for('static', filename='images/flood-restoration-in-progress.jpg') }}" class="d-block w-100" alt="Flood damage restoration">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <hr class="my-5">
-
         <!-- Mission Section -->
-        <section id="mission" class="text-start p-5 rounded my-5">
+        <section id="mission" class="text-start">
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
                     <i class="fas fa-bullseye fa-4x text-primary mb-3 mb-md-0"></i>
@@ -144,10 +120,8 @@
             </div>
         </section>
 
-        <hr class="my-5">
-
         <!-- Why Choose Us Section -->
-        <section id="why-us" class="why-choose-us py-5">
+        <section id="why-us" class="why-choose-us section-padding">
             <h2 class="section-title text-center mb-5">{{ about.why_choose_us.title }}</h2>
             <div class="row justify-content-center g-4">
                 {% set icons = ['shipping-fast', 'users-cog', 'handshake', 'shield-alt', 'smile-beam'] %}

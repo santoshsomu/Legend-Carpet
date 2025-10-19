@@ -128,7 +128,6 @@
     color: var(--primary-contrast);
     border-color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-2);
 }
 
 /* Portfolio Grid */
@@ -159,12 +158,11 @@
 
 .portfolio-card {
     background: var(--bg);
-    border-radius: var(--radius-2xl);
+    border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-2);
-    border: 1px solid rgba(15, 23, 42, 0.1);
     transition: all var(--transition-normal);
-    position: relative;
+    border: none; /* Remove the border */
 }
 
 .portfolio-card::before {
@@ -186,7 +184,8 @@
 
 .portfolio-card:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-4);
+    box-shadow: var(--shadow-3);
+    border: none !important; /* Remove the border on hover */
 }
 
 /* Enhanced Image Comparison Slider */
@@ -1033,7 +1032,6 @@ ENHANCED IMAGE LOADING AND DISPLAY ===== */
     color: var(--primary-contrast);
     border-color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-2);
 }
 
 /* Improved comparison labels */

@@ -18,7 +18,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -54,7 +54,7 @@
                         <i class="fas fa-phone" aria-hidden="true"></i>
                         <span>0416 388 777</span>
                     </a>
-                    <a href="#contact" class="cta-button header-cta">Get Quote</a>
+                    <a href="/#contact" class="cta-button cta-primary header-cta">GET FREE QUOTE</a>
                 </div>
 
                 <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
@@ -67,16 +67,109 @@
     </header>
 
     <main id="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div style="padding: 20px 0; position: sticky; top: 80px; z-index: 1001;">
+                    <div class="container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
+    <!-- Contact Section - Standard across all pages -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center fade-in">
+                <h2>Book Today, Enjoy a Cleaner Home Tomorrow</h2>
+                <p class="section-subtitle">Ready for spotless carpets? Fill out the form below or give us a call for a fast, free, and no-obligation quote.</p>
+            </div>
+
+            <div class="contact-form-container fade-in">
+                <form id="contact-form" class="contact-form quote-form" action="/submit_form" method="POST" enctype="multipart/form-data">
+                    <h3>Get Your Free Quote</h3>
+                    <p class="honeypot">
+                        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Name *</label>
+                            <input type="text" id="contact-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone *</label>
+                            <input type="tel" id="contact-phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-suburb">Suburb/Postcode *</label>
+                            <input type="text" id="contact-suburb" name="suburb" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email *</label>
+                            <input type="email" id="contact-email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-service">Service Required *</label>
+                        <select id="contact-service" name="service" required>
+                            <option value="" disabled selected>Select Service</option>
+                            <option value="carpet-repair">Carpet Repair</option>
+                            <option value="carpet-cleaning">Carpet Cleaning</option>
+                            <option value="carpet-stretching">Carpet Stretching</option>
+                            <option value="water-damage">Water Damage Restoration</option>
+                            <option value="carpet-installation">Carpet Installation</option>
+                            <option value="upholstery-cleaning">Upholstery Cleaning</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-description">Describe your issue *</label>
+                        <textarea id="contact-description" name="description" rows="3" placeholder="Please describe your carpet issue..." required></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label>Do you have a spare piece of carpet?</label>
+                        <div class="checkbox-options">
+                            <label class="checkbox-label">
+                                <input type="radio" name="spare_carpet" value="yes">
+                                <span>Yes</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="spare_carpet" value="no">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-attachments">Attach Photos/Videos (Optional)</label>
+                        <div class="file-upload-container">
+                            <input type="file" id="contact-attachments" name="attachments[]" accept="image/*,video/*" multiple 
+                                class="file-upload-input">
+                            <label for="contact-attachments" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Drop files here or click to upload</span>
+                            </label>
+                            <div class="file-preview"></div>
+                        </div>
+                        <small class="file-help-text">Accepted formats: Images (JPG, PNG) and Videos (MP4, MOV). Max size: 10MB per file</small>
+                    </div>
+                    <button type="submit" class="cta-button">Get Free Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Without form -->
     <footer id="main-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="{{ url_for('static', filename='images/legend.png') }}" alt="Legend Carpet Services Logo - Melbourne's Premier Carpet Experts" style="height: 110px;" loading="lazy">
+                        <img src="{{ url_for('static', filename='images/legend_white.png') }}" alt="Legend Carpet Services Logo - Melbourne's Premier Carpet Experts" style="height: 110px;" loading="lazy">
                     </div>
                     <p>Your trusted partner for professional carpet cleaning and repairs in Melbourne. We are committed to quality and customer satisfaction.</p>
                     <div class="social-links">
@@ -123,7 +216,7 @@
                 </div>
             </div>
 
-                        <div class="footer-bottom">
+            <div class="footer-bottom">
                 <p>Copyright 2024-25, All Rights Reserved.</p>
             </div>
         </div>
@@ -140,6 +233,6 @@
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
     <script src="{{ url_for('static', filename='js/forms.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
 </body>
 </html>
+

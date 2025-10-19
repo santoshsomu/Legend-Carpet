@@ -18,7 +18,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,6 +41,7 @@
                         <li><a href="#services">Services</a></li>
                         <li><a href="#why-us">Why Us</a></li>
                         <li><a href="#service-areas">Areas</a></li>
+                        <li><a href="/about">About</a></li>
                         <li><a href="/portfolio">Portfolio</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -51,7 +52,7 @@
                         <i class="fas fa-phone" aria-hidden="true"></i>
                         <span>0416 388 777</span>
                     </a>
-                    <a href="#contact" class="cta-button header-cta cta-secondary">Get Quote</a>
+                    <a href="#contact" class="cta-button cta-primary header-cta">GET FREE QUOTE</a>
                 </div>
 
                 <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
@@ -64,6 +65,17 @@
     </header>
 
     <main id="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div style="padding: 20px 0; position: sticky; top: 80px; z-index: 1001;">
+                    <div class="container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
         <!-- Hero Section -->
         <section id="hero">
             <div class="hero-video-container">
@@ -74,7 +86,7 @@
                     <div class="hero-text">
                         <h1>Revive Your Carpets in Just One Visit</h1>
                         <p class="hero-subtitle">From stubborn stains to everyday wear, we bring your carpets back to life. Experience a cleaner, healthier home with Melbourne's trusted carpet care specialists.</p>
-
+                        
                         <div class="hero-features">
                             <div class="feature">
                                 <i class="fas fa-star" aria-hidden="true"></i>
@@ -93,44 +105,79 @@
                                 <span>Eco-Friendly & Pet Safe</span>
                             </div>
                         </div>
-
-                        <div class="hero-cta">
-                            <a href="#contact" class="cta-button cta-primary">Get My Free Quote</a>
-                            <a href="tel:0416388777" class="cta-button cta-secondary">
-                                <i class="fas fa-phone" aria-hidden="true"></i>
-                                Call Now
-                            </a>
-                        </div>
                     </div>
 
                     <div class="hero-form-container">
-                        <div class="quote-form">
+                        <!-- Standard contact form (same as portfolio/about/service pages) -->
+                        <form id="hero-contact-form" class="contact-form quote-form" action="/submit_form" method="POST" enctype="multipart/form-data">
                             <h3>Get Your Free Quote</h3>
-                            <form id="hero-form" action="your-form-handler-url" method="POST">
-                                <p class="honeypot">
-                                    <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
-                                </p>
-                                <div class="form-row">
-                                    <input type="text" name="name" placeholder="Your Name" required>
-                                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                            <p class="honeypot" aria-hidden="true">
+                                <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                            </p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="hero-name">Name *</label>
+                                    <input type="text" id="hero-name" name="name" required>
                                 </div>
-                                <div class="form-row">
-                                    <input type="text" name="suburb" placeholder="Suburb/Postcode" required>
-                                    <input type="email" name="email" placeholder="Email Address" required>
+                                <div class="form-group">
+                                    <label for="hero-phone">Phone *</label>
+                                    <input type="tel" id="hero-phone" name="phone" required>
                                 </div>
-                                <select name="service" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="hero-suburb">Suburb/Postcode *</label>
+                                    <input type="text" id="hero-suburb" name="suburb" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hero-email">Email *</label>
+                                    <input type="email" id="hero-email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hero-service">Service Required *</label>
+                                <select id="hero-service" name="service" required>
                                     <option value="" disabled selected>Select Service</option>
                                     <option value="carpet-repair">Carpet Repair</option>
                                     <option value="carpet-cleaning">Carpet Cleaning</option>
                                     <option value="carpet-stretching">Carpet Stretching</option>
                                     <option value="water-damage">Water Damage Restoration</option>
                                     <option value="carpet-installation">Carpet Installation</option>
+                                    <option value="upholstery-cleaning">Upholstery Cleaning</option>
                                 </select>
-                                <textarea name="description" placeholder="Describe your issue (optional)" rows="3"></textarea>
-                                <button type="submit" class="cta-button">Get Free Quote</button>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hero-description">Describe your issue *</label>
+                                <textarea id="hero-description" name="description" rows="3" placeholder="Please describe your carpet issue..." required></textarea>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>Do you have a spare piece of carpet?</label>
+                                <div class="checkbox-options">
+                                    <label class="checkbox-label">
+                                        <input type="radio" name="spare_carpet" value="yes">
+                                        <span>Yes</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="radio" name="spare_carpet" value="no">
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hero-attachments">Attach Photos/Videos (Optional)</label>
+                                <div class="file-upload-container">
+                                    <input type="file" id="hero-attachments" name="attachments[]" accept="image/*,video/*" multiple class="file-upload-input">
+                                    <label for="hero-attachments" class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Drop files here or click to upload</span>
+                                    </label>
+                                    <div class="file-preview"></div>
+                                </div>
+                                <small class="file-help-text">Accepted formats: Images (JPG, PNG) and Videos (MP4, MOV). Max size: 10MB per file</small>
+                            </div>
+                            <button type="submit" class="cta-button">Get Free Quote</button>
+                        </form>
+                     </div>
                 </div>
             </div>
         </section>
@@ -167,6 +214,7 @@
                                 <div class="stars">
                                     <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star-half-alt" aria-hidden="true"></i>
                                     <span>4.9 (250+ Reviews)</span>
+                                    <i class="fab fa-google" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </a>
@@ -223,34 +271,34 @@
         <!-- Why Choose Us Section -->
         <section id="why-us" class="section-padding">
             <div class="container">
-                <div class="why-us-content" style="display: flex; align-items: center;">
-                    <div class="why-us-text fade-in" style="flex: 1; padding-right: 20px;">
-                        <h2>The Legend Difference: Quality You Can See & Feel</h2>
-                        <p>We're not just cleaners; we're caretakers of your home's comfort. Our commitment to quality, transparency, and respect ensures a five-star experience every time.</p>
+                <div class="why-us-content smooth-scroll-section" style="display: flex; align-items: center;">
+                    <div class="why-us-text fade-in-left" style="flex: 1; padding-right: 20px;">
+                        <h2 class="fade-in-up">The Legend Difference: Quality You Can See & Feel</h2>
+                        <p class="fade-in-up">We're not just cleaners; we're caretakers of your home's comfort. Our commitment to quality, transparency, and respect ensures a five-star experience every time.</p>
 
                         <div class="benefits-grid">
-                            <div class="benefit">
+                            <div class="benefit fade-in-up">
                                 <i class="fas fa-certificate" aria-hidden="true"></i>
                                 <div>
                                     <h4>Certified & Insured</h4>
                                     <p>Fully licensed, bonded, and insured technicians</p>
                                 </div>
                             </div>
-                            <div class="benefit">
+                            <div class="benefit fade-in-up">
                                 <i class="fas fa-dollar-sign" aria-hidden="true"></i>
                                 <div>
                                     <h4>Transparent Pricing</h4>
                                     <p>Upfront, honest pricing with no hidden fees</p>
                                 </div>
                             </div>
-                            <div class="benefit">
+                            <div class="benefit fade-in-up">
                                 <i class="fas fa-clock" aria-hidden="true"></i>
                                 <div>
                                     <h4>Fast Service</h4>
                                     <p>Same-day service available with flexible scheduling</p>
                                 </div>
                             </div>
-                            <div class="benefit">
+                            <div class="benefit fade-in-up">
                                 <i class="fas fa-heart" aria-hidden="true"></i>
                                 <div>
                                     <h4>Respectful Service</h4>
@@ -259,11 +307,11 @@
                             </div>
                         </div>
 
-                        <a href="#contact" class="cta-button">Get Your Free Quote</a>
+                        <a href="#contact" class="cta-button fade-in-up">Get Your Free Quote</a>
                     </div>
 
-                    <div style="flex: 1;">
-                        <img src="{{ url_for('static', filename='images/ba.png') }}" alt="Legend Carpet Services" style="max-width: 100%; height: auto; border-radius: 10px;">
+                    <div class="image-container fade-in-right" style="flex: 1;">
+                        <img src="{{ url_for('static', filename='images/ba.png') }}" alt="Legend Carpet Services" class="smooth-image" style="max-width: 100%; height: auto; border-radius: 10px;">
                     </div>
                 </div>
             </div>
@@ -286,10 +334,10 @@
                             <i class="fas fa-star" aria-hidden="true"></i>
                             <i class="fas fa-star" aria-hidden="true"></i>
                         </div>
-                        <p>"Absolutely phenomenal service! My carpets look brand new. The technician was professional and on time. Highly recommend Legend Carpet!"</p>
+                        <p>"The hallway carpet had become a safety issue with all the buckling. Legend Carpet re-stretched it and now it's perfectly smooth. No more tripping!"</p>
                         <div class="testimonial-author">
-                            <strong>Sarah J.</strong>
-                            <span>Werribee</span>
+                            <strong>John D.</strong>
+                            <span>Melbourne</span>
                         </div>
                     </div>
 
@@ -301,10 +349,10 @@
                             <i class="fas fa-star" aria-hidden="true"></i>
                             <i class="fas fa-star" aria-hidden="true"></i>
                         </div>
-                        <p>"They saved my bond! A huge red wine stain that I thought was permanent is completely gone. Fast, affordable, and incredible results."</p>
+                        <p>"Our bedroom carpet had ripples and waves everywhere. Legend Carpet came in, re-stretched the entire room, and now it looks perfect."</p>
                         <div class="testimonial-author">
-                            <strong>Michael B.</strong>
-                            <span>Point Cook</span>
+                            <strong>Jane S.</strong>
+                            <span>Melbourne</span>
                         </div>
                     </div>
 
@@ -316,10 +364,54 @@
                             <i class="fas fa-star" aria-hidden="true"></i>
                             <i class="fas fa-star" aria-hidden="true"></i>
                         </div>
-                        <p>"The best carpet repair in Melbourne. They patched a burn mark seamlessly. You can't even tell it was there. Thank you so much!"</p>
+                        <p>"We had a large burn mark in the middle of our living room carpet and thought we'd have to replace the whole thing. Reddy patched it so well you can't even see it."</p>
                         <div class="testimonial-author">
-                            <strong>Emily R.</strong>
-                            <span>Southbank</span>
+                            <strong>Mike P.</strong>
+                            <span>Melbourne</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p>"Legend Carpet Services did an exceptional job restoring our carpets after a flood. They were fast, professional, and affordable. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <strong>David L.</strong>
+                            <span>Frankston</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p>"I thought I would have to replace my entire carpet, but Legend Carpet saved it with their expert repair. It looks brand new again!"</p>
+                        <div class="testimonial-author">
+                            <strong>Maria G.</strong>
+                            <span>Dandenong</span>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p>"The team was fantastic—quick to respond and very thorough with their cleaning. Our office carpets have never looked better!"</p>
+                        <div class="testimonial-author">
+                            <strong>Business Owner</strong>
+                            <span>Melbourne CBD</span>
                         </div>
                     </div>
                 </div>
@@ -532,77 +624,74 @@
                     </div>
 
                     <div class="contact-form-container fade-in">
-                        <form id="contact-form" class="contact-form multi-step-form" action="your-form-handler-url" method="POST">
+                        <!-- Standard contact form (same as portfolio/about/service) -->
+                        <form id="contact-form" class="contact-form quote-form" action="/submit_form" method="POST" enctype="multipart/form-data">
                             <h3>Get Your Free Quote</h3>
-
-                            <div class="progress-bar">
-                                <div class="progress-bar-step active">1</div>
-                                <div class="progress-bar-step">2</div>
-                                <div class="progress-bar-step">3</div>
+                            <p class="honeypot" aria-hidden="true">
+                                <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                            </p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-name">Name *</label>
+                                    <input type="text" id="contact-name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-phone">Phone *</label>
+                                    <input type="tel" id="contact-phone" name="phone" required>
+                                </div>
                             </div>
-
-                            <fieldset class="form-step active">
-                                <p class="honeypot">
-                                    <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
-                                </p>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="name">Name *</label>
-                                        <input type="text" id="name" name="name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone">Phone *</label>
-                                        <input type="tel" id="phone" name="phone" required>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="suburb">Suburb/Postcode *</label>
-                                        <input type="text" id="suburb" name="suburb" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email *</label>
-                                        <input type="email" id="email" name="email" required>
-                                    </div>
-                                </div>
-                                <button type="button" class="cta-button next-btn" style="float: right;">Next</button>
-                            </fieldset>
-
-                            <fieldset class="form-step">
+                            <div class="form-row">
                                 <div class="form-group">
-                                    <label for="service">Service Required</label>
-                                    <select id="service" name="service">
-                                        <option value="" disabled selected>Select a service</option>
-                                        <option value="carpet-repair">Carpet Repair Services</option>
-                                        <option value="carpet-stretching">Carpet Re-Stretching</option>
-                                        <option value="carpet-installation">Carpet Installation</option>
-                                        <option value="water-damage">Water Damage Restoration</option>
-                                        <option value="carpet-cleaning">Carpet Steam Cleaning</option>
-                                        <option value="upholstery">Upholstery Cleaning</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                                    <label for="contact-suburb">Suburb/Postcode *</label>
+                                    <input type="text" id="contact-suburb" name="suburb" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="description">Description of Issue</label>
-                                    <textarea id="description" name="description" rows="4" placeholder="Please describe your carpet issue or requirements..."></textarea>
+                                    <label for="contact-email">Email *</label>
+                                    <input type="email" id="contact-email" name="email" required>
                                 </div>
-                                <div class="form-buttons">
-                                    <button type="button" class="cta-button cta-secondary prev-btn">Previous</button>
-                                    <button type="button" class="cta-button next-btn">Next</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-service">Service Required *</label>
+                                <select id="contact-service" name="service" required>
+                                    <option value="" disabled selected>Select Service</option>
+                                    <option value="carpet-repair">Carpet Repair</option>
+                                    <option value="carpet-cleaning">Carpet Cleaning</option>
+                                    <option value="carpet-stretching">Carpet Stretching</option>
+                                    <option value="water-damage">Water Damage Restoration</option>
+                                    <option value="carpet-installation">Carpet Installation</option>
+                                    <option value="upholstery-cleaning">Upholstery Cleaning</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-description">Describe your issue *</label>
+                                <textarea id="contact-description" name="description" rows="3" placeholder="Please describe your carpet issue..." required></textarea>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>Do you have a spare piece of carpet?</label>
+                                <div class="checkbox-options">
+                                    <label class="checkbox-label">
+                                        <input type="radio" name="spare_carpet" value="yes">
+                                        <span>Yes</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="radio" name="spare_carpet" value="no">
+                                        <span>No</span>
+                                    </label>
                                 </div>
-                            </fieldset>
-
-                            <fieldset class="form-step">
-                                <div class="form-group">
-                                    <label for="photos">Photos (Optional)</label>
-                                    <input type="file" id="photos" name="photos" multiple accept="image/*">
-                                    <small>Upload photos of the problem area for better assessment</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-attachments">Attach Photos/Videos (Optional)</label>
+                                <div class="file-upload-container">
+                                    <input type="file" id="contact-attachments" name="attachments[]" accept="image/*,video/*" multiple class="file-upload-input">
+                                    <label for="contact-attachments" class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Drop files here or click to upload</span>
+                                    </label>
+                                    <div class="file-preview"></div>
                                 </div>
-                                <div class="form-buttons">
-                                    <button type="button" class="cta-button cta-secondary prev-btn">Previous</button>
-                                    <button type="submit" class="cta-button">Get Free Quote</button>
-                                </div>
-                            </fieldset>
+                                <small class="file-help-text">Accepted formats: Images (JPG, PNG) and Videos (MP4, MOV). Max size: 10MB per file</small>
+                            </div>
+                            <button type="submit" class="cta-button">Get Free Quote</button>
                         </form>
                     </div>
                 </div>
@@ -616,9 +705,9 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="{{ url_for('static', filename='images/legend.png') }}" alt="Legend Carpet Services Logo - Melbourne's Premier Carpet Experts" style="height: 110px;" loading="lazy">
+                        <img src="{{ url_for('static', filename='images/legend_white.png') }}" alt="Legend Carpet Services Logo - Melbourne's Premier Carpet Experts" style="height: 110px;" loading="lazy">
                     </div>
-                    <p>Your trusted partner for professional carpet cleaning and repairs in Melbourne. We are committed to quality and customer satisfaction.</p>
+                    <p>Legend Carpet Services: Melbourne’s trusted choice for carpet installation, repair, and restoration with expert care and affordable solutions.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>

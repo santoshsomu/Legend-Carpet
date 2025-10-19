@@ -1,7 +1,32 @@
 import os
-from flask import Flask, render_template, abort
+import logging  # Add this import
+from flask import Flask, render_template, abort, request, redirect, url_for, flash
+from flask_mail import Mail, Message
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+
+# --- Production-ready Configuration ---
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'a-very-secret-key-that-should-be-changed')
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'akshaysomu@gmail.com'
+app.config['MAIL_PASSWORD'] = 'sjsu pbdj qcyi nwmf'  # Your Gmail App Password
+app.config['MAIL_DEFAULT_SENDER'] = ('Legend Carpet Services', 'akshaysomu@gmail.com')
+app.config['MAIL_MAX_EMAILS'] = None
+app.config['MAIL_ASCII_ATTACHMENTS'] = False
+app.config['MAIL_DEBUG'] = True
+
+# Add these configurations
+UPLOAD_FOLDER = 'temp_uploads'
+ALLOWED_EXTENSIONS = {'gif', 'png', 'jpg', 'jpeg', 'mp4', 'mov'}
+MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10MB max file size
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+mail = Mail(app)
 
 # Comprehensive service data matching the home page services
 services = {
@@ -94,9 +119,8 @@ services = {
             {"title": "Odor Elimination", "description": "Complete odor removal and freshening"},
             {"title": "Protection Treatment", "description": "Optional fabric protection for future stain resistance"},
             ],
-    },
 }
-
+}
 # Content for the About Us page
 about_content = {
     "title": "About Legend Carpet Services",
@@ -125,9 +149,75 @@ about_content = {
 }
 
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html", services=services) # Pass services to template
+    try:
+        return render_template('index.html', services=services)
+    except Exception as e:
+        app.logger.error(f"Error in index route: {str(e)}")
+        return "An error occurred", 500
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/submit_form', methods=['POST'])
+def submit_form():
+    try:
+        if request.method == 'POST':
+            # Get the referring page and add #contact anchor
+            referring_page = request.referrer or url_for('index')
+            referring_page = referring_page + "#contact" if "#contact" not in referring_page else referring_page
+
+            # Collect form data
+            name = request.form.get('name')
+            phone = request.form.get('phone')
+            email = request.form.get('email')
+            suburb = request.form.get('suburb')
+            service = request.form.get('service')
+            description = request.form.get('description')
+
+            # Create message
+            msg = Message(
+                subject=f"New Quote Request from {name}",
+                recipients=['akshaysomu@gmail.com'],
+                sender=app.config['MAIL_DEFAULT_SENDER']
+            )
+
+            # Handle file attachments
+            attachments = request.files.getlist('attachments[]')
+            file_names = []
+            
+            if not os.path.exists(UPLOAD_FOLDER):
+                os.makedirs(UPLOAD_FOLDER)
+
+            for file in attachments:
+                if file and file.filename and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    file.save(filepath)
+                    with open(filepath, 'rb') as f:
+                        msg.attach(filename, file.content_type, f.read())
+                    file_names.append(filename)
+                    os.remove(filepath)  # Clean up the temp file
+
+            # Add file names to template context
+            html_body = render_template('email_template.html',
+                                    name=name, phone=phone, email=email,
+                                    suburb=suburb, service=service,
+                                    description=description,
+                                    attachments=file_names)
+        
+            msg.html = html_body
+            mail.send(msg)
+            flash("Thank you for your request! We will get back to you shortly.", "success")
+
+    except Exception as e:
+        app.logger.error(f"Error sending email: {str(e)}")
+        flash(f"Sorry, there was an error sending your message. Please try again.", "danger")
+
+    return redirect(referring_page)
 
 
 @app.route("/service/<service_name>")
@@ -208,6 +298,8 @@ def portfolio():
     print(f"Total portfolio images: {len(portfolio_images)}")
     return render_template("portfolio.html", portfolio_images=portfolio_images)
 
-
-if __name__ == "__main__":
-    app.run(debug=True) 
+if __name__ == '__main__':
+    app.logger.setLevel(logging.INFO)
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_ENV') == 'development'
+    app.run(host='0.0.0.0', port=port, debug=debug)
